@@ -1,0 +1,35 @@
+{
+    "DICOMWebServersConfig": [
+        {
+            "AETitle": "FHIRxLLM-PACS-Proxy",
+            "QIDO-enableHTTPS": false,
+            "WADO-enableHTTPS": false,
+            "QIDO-hostname": "localhost",
+            "WADO-hostname": "localhost",
+            "QIDO-PORT": 3000,
+            "WADO-PORT": 3000,
+            "contentType": "application/json",
+            "timeout": 80000,
+            "limit": 100,
+            "charset": "UTF=8",
+            "QIDO": "api/dicom",
+            "WADO-URI": "api/dicom/wado",
+            "WADO-RS": "api/dicom",
+            "WADO-RS/URI": "RS",
+            "STOW": "stow",
+            "enableRetrieveURI": false,
+            "includefield": false,
+            "enableXml2Dcm": false,
+            "Xml2DcmUrl": "/upload",
+            "target": "/bluelight/html/start.html",
+            "token": {
+                "apikey": "",
+                "bearer": ""
+            }
+        }
+    ],
+    "//_thumnail_witdth": "縮圖寬度",
+    "thumnail_witdth": 70,
+    "//_study_comparison": "進片模式",
+    "study_comparison": false
+}
