@@ -32,7 +32,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
-width: 100%; min-height: 100vh;
+width: 100%; max-width: 100%; min-height: 100vh;
 background-color: var(--color-bg); color: var(--color-text);
 font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
 font-size: 14px; overflow-x: hidden; display: flex; flex-direction: column;
@@ -51,22 +51,22 @@ input:focus, select:focus, textarea:focus { border-color: var(--color-primary); 
 .star-btn:hover { transform: scale(1.1); }
 .star-btn.active { color: var(--color-star); }
 
-.page-view { display: none; flex-direction: column; flex: 1; }
+.page-view { display: none; flex-direction: column; flex: 1; width: 100%; max-width: 100%; }
 .page-view.active { display: flex; }
 
 #entry-overlay {
-position: fixed; inset: 0; background-color: var(--color-bg); z-index: 99999;
+position: fixed; inset: 0; width: 100vw; max-width: 100vw; background-color: var(--color-bg); z-index: 99999;
 display: flex; flex-direction: column; align-items: center; justify-content: center;
 transition: opacity 0.6s ease-out; overflow: hidden;
 }
 #entry-overlay.hidden { opacity: 0; pointer-events: none; }
-.entry-content { text-align: center; display: flex; flex-direction: column; align-items: center; padding: 20px; perspective: 1000px; }
-.ecg-container { width: 300px; height: 100px; margin-bottom: -10px; pointer-events: none; }
+.entry-content { text-align: center; display: flex; flex-direction: column; align-items: center; padding: 20px; width: 100%; max-width: 100vw; overflow: hidden; perspective: 1000px; }
+.ecg-container { width: min(300px, 85vw); height: 100px; margin-bottom: -10px; pointer-events: none; }
 .ecg-line { width: 100%; height: 100%; overflow: visible; }
 .ecg-line path { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawEcg 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards, glowEcg 2s infinite 1.2s; }
 .suto-netflix-container {
-display: flex; gap: 8px; font-size: clamp(4rem, 10vw, 7rem); font-family: "Helvetica Neue", Impact, sans-serif; font-weight: 900;
-letter-spacing: 2px; margin-bottom: 20px; position: relative; z-index: 2;
+display: flex; gap: clamp(4px, 1.5vw, 8px); font-size: clamp(3rem, 12vw, 7rem); font-family: "Helvetica Neue", Impact, sans-serif; font-weight: 900;
+letter-spacing: 2px; margin-bottom: 20px; position: relative; z-index: 2; max-width: 100%; justify-content: center;
 transition: transform 0.8s cubic-bezier(0.55, 0.085, 0.68, 0.53), opacity 0.6s ease, filter 0.6s ease; transform-origin: center center; pointer-events: none;
 }
 .suto-letter {
@@ -84,13 +84,13 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 @keyframes netflixFlare { 0% { opacity: 0; transform: scale(1); filter: blur(5px); } 20% { opacity: 1; transform: scale(1.1); filter: blur(2px); } 100% { opacity: 0.4; transform: scale(1); filter: blur(0); } }
 @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 
-.netflix-zoom { transform: scale(30) translateZ(100px); filter: blur(10px); }
+.netflix-zoom { transform: scale(20) translateZ(80px); filter: blur(8px); }
 .entry-fade-target { transition: opacity 0.3s ease; }
-.entry-subtitle { font-size: clamp(1rem, 3vw, 1.4rem); color: #111827; margin: 0 0 20px; font-weight: 700; opacity: 0; animation: fadeInUp 0.6s ease-out 1.0s forwards; letter-spacing: 1px; }
+.entry-subtitle { font-size: clamp(0.95rem, 3.6vw, 1.4rem); color: #111827; margin: 0 0 20px; font-weight: 700; opacity: 0; animation: fadeInUp 0.6s ease-out 1.0s forwards; letter-spacing: 0.5px; max-width: 92vw; line-height: 1.5; word-break: break-word; }
 .entry-btn { position: relative; z-index: 10; pointer-events: auto; padding: 12px 36px; font-size: 1rem; background: #111827; color: #fff; border: none; border-radius: 30px; font-weight: 700; letter-spacing: 2px; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.6s ease-out 1.2s forwards; }
 .entry-btn:hover { background: #333; transform: translateY(-3px) scale(1.05) !important; }
 
-.page-header { background: var(--color-panel); border-bottom: 1px solid var(--color-border); padding: 0 4vw; display: flex; align-items: center; justify-content: space-between; height: 64px; flex-shrink: 0; position: relative; z-index: 500; }
+.page-header { background: var(--color-panel); border-bottom: 1px solid var(--color-border); padding: 0 4vw; display: flex; align-items: center; justify-content: space-between; height: 64px; flex-shrink: 0; position: relative; z-index: 500; width: 100%; }
 .page-header__top { display: flex; align-items: center; justify-content: space-between; }
 .page-header__left { display: flex; align-items: center; gap: 16px; cursor: pointer; }
 .page-header__logo { font-size: 22px; font-weight: 900; letter-spacing: 1px; color: var(--color-text); }
@@ -102,7 +102,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .page-header__nav-item.active::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: 0; height: 3px; background-color: var(--color-text); }
 .user-avatar { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--color-border); display: grid; place-items: center; color: var(--color-text-sub); margin-left: 16px; background: #f9f9f9; }
 
-.hamburger-btn { display: none; width: 40px; height: 40px; border-radius: 6px; border: 1px solid var(--color-border); background: #fff; color: var(--color-text); align-items: center; justify-content: center; }
+.hamburger-btn { display: none; width: 40px; height: 40px; border-radius: 6px; border: 1px solid var(--color-border); background: #fff; color: var(--color-text); align-items: center; justify-content: center; flex-shrink: 0; }
 .hamburger-btn:hover { background: #f3f4f6; }
 .hamburger-btn .icon-close { display: none; }
 .hamburger-btn.open .icon-menu { display: none; }
@@ -110,10 +110,10 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 
 @media (max-width: 900px) {
 .page-header { padding: 0; height: auto; flex-direction: column; align-items: stretch; }
-.page-header__top { width: 100%; height: 58px; padding: 0 4vw; }
+.page-header__top { width: 100%; height: 58px; padding: 0 16px; }
 .page-header__title { display: none; }
 .hamburger-btn { display: inline-flex; }
-.page-header__nav { display: none; flex-direction: column; align-items: stretch; gap: 4px; height: auto; width: 100%; padding: 8px 4vw 16px; background: #fff; border-top: 1px solid var(--color-line); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+.page-header__nav { display: none; flex-direction: column; align-items: stretch; gap: 4px; height: auto; width: 100%; padding: 8px 16px 16px; background: #fff; border-top: 1px solid var(--color-line); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
 .page-header__nav.open { display: flex; }
 .page-header__nav-item { height: auto; padding: 12px 14px; border-radius: 6px; font-size: 14px; }
 .page-header__nav-item.active { background: #f3f4f6; font-weight: 700; }
@@ -121,19 +121,28 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .user-avatar { display: none; }
 }
 
-.content-container { flex: 1; display: flex; flex-direction: column; padding: 32px 4vw 40px; max-width: 1440px; margin: 0 auto; width: 100%; }
+.content-container { flex: 1; display: flex; flex-direction: column; padding: 32px 4vw 40px; max-width: 1440px; margin: 0 auto; width: 100%; min-width: 0; }
 .section-title { font-size: 24px; font-weight: bold; margin-bottom: 8px; color: var(--color-text); }
 .section-subtitle { color: var(--color-text-sub); font-size: 13px; margin-bottom: 24px; }
-.app-footer { background: transparent; border-top: 1px solid var(--color-border); padding: 16px 4vw; display: flex; justify-content: space-between; font-size: 12px; color: #9ca3af; flex-shrink: 0; margin-top: auto; }
+.app-footer { background: transparent; border-top: 1px solid var(--color-border); padding: 16px 4vw; display: flex; justify-content: space-between; font-size: 12px; color: #9ca3af; flex-shrink: 0; margin-top: auto; width: 100%; }
 
-.table-scroll { width: 100%; overflow-x: auto; }
+.table-scroll { width: 100%; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 8px; }
 .data-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; }
 .data-table th { background: #f9fafb; padding: 12px 16px; text-align: left; font-size: 13px; color: var(--color-text); font-weight: 600; border-bottom: 1px solid var(--color-border); white-space: nowrap; }
 .data-table td { padding: 16px; border-bottom: 1px solid var(--color-border); font-size: 13px; vertical-align: middle; }
 .data-table tbody tr:hover { background: #f9fafb; cursor: pointer; }
 .data-table tbody tr:last-child td { border-bottom: none; }
-.td-name { font-size: 15px; font-weight: bold; color: var(--color-text); margin-bottom: 4px; display: block; }
+.td-name { font-size: 15px; font-weight: bold; color: var(--color-text); margin-bottom: 4px; display: block; white-space: nowrap; }
 .td-meta { font-size: 12px; color: var(--color-text-sub); display: block; margin-top: 4px; word-break: break-all; }
+
+@media (max-width: 768px) {
+.content-container { padding: 20px 16px 32px; }
+.app-footer { padding: 14px 16px; }
+.data-table { min-width: 560px; }
+.data-table th, .data-table td { padding: 12px 12px; font-size: 12px; }
+.td-name { font-size: 14px; }
+.td-meta { font-size: 11px; max-width: 165px; }
+}
 
 .entity-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; width: 100%; }
 .entity-card { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: 0.2s; }
@@ -153,28 +162,39 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 
 .alert-yellow { background: var(--color-warn-bg); border: 1px solid var(--color-warn-border); color: var(--color-warn-text); padding: 10px 14px; border-radius: 6px; font-size: 12px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
 
-.main-layout { display: flex; gap: 40px; align-items: flex-start; }
+.main-layout { display: flex; gap: 40px; align-items: flex-start; width: 100%; min-width: 0; }
 .main-sidebar { width: 200px; flex-shrink: 0; }
 .main-sidebar h2 { font-size: 20px; margin-bottom: 24px; }
 .sidebar-menu { display: flex; flex-direction: column; gap: 8px; }
 .sidebar-menu button { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 14px; color: var(--color-text-sub); border: 1px solid var(--color-border); background: var(--color-panel); transition: 0.2s; }
 .sidebar-menu button.active { border-color: var(--color-text); color: var(--color-text); font-weight: bold; box-shadow: 2px 2px 0px rgba(0,0,0,0.05); }
-.main-content { flex: 1; min-width: 0; }
-.main-section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px; }
+
+.main-content { flex: 1; min-width: 0; max-width: 100%; }
+.main-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px; flex-wrap: wrap; }
 .main-section-title { font-size: 18px; font-weight: bold; margin: 0; }
 .main-section-title small { font-size: 12px; color: var(--color-text-sub); font-weight: normal; margin-left: 8px; }
-.patient-hero-card { display: flex; align-items: center; justify-content: space-between; background: #e5e7eb; border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; cursor: pointer; transition: 0.2s; gap: 16px; }
+
+.patient-hero-card { display: flex; align-items: center; justify-content: space-between; background: #e5e7eb; border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; cursor: pointer; transition: 0.2s; gap: 16px; width: 100%; max-width: 100%; }
 .patient-hero-card:hover { filter: brightness(0.95); }
 .hero-new-tag { background: #374151; color: #fff; font-size: 11px; padding: 2px 6px; border-radius: 4px; vertical-align: top; margin-left: 8px; }
+.hero-col-patient { flex: 1.3; min-width: 0; }
+.hero-col-complaint { flex: 1; text-align: center; font-size: 13px; min-width: 0; }
+.hero-col-modality { flex: 1; text-align: center; font-size: 13px; min-width: 0; }
+.hero-col-time { flex: 1; text-align: right; min-width: 0; }
+.hero-col-track { margin-left: 12px; flex-shrink: 0; }
 
 @media (max-width: 768px) {
 .main-layout { flex-direction: column; gap: 20px; }
-.main-sidebar { width: 100%; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap:16px;}
-.main-sidebar h2 { margin-bottom: 0; font-size:18px;}
-.sidebar-menu { flex-direction: row; flex:1; overflow-x: auto; gap: 8px;}
-.sidebar-menu button { padding: 8px 12px; white-space: nowrap; }
-.patient-hero-card { flex-wrap: wrap; gap: 12px; align-items: flex-start;}
-.patient-hero-card > div { flex: 1 1 40%; text-align: left !important; margin-left: 0 !important;}
+.main-sidebar { width: 100%; display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+.main-sidebar h2 { margin-bottom: 0; font-size: 18px; }
+.sidebar-menu { flex-direction: row; flex-wrap: wrap; width: 100%; gap: 8px; }
+.sidebar-menu button { flex: 1 1 auto; padding: 8px 10px; font-size: 13px; justify-content: center; gap: 6px; white-space: nowrap; }
+
+.patient-hero-card { flex-direction: column; align-items: stretch; padding: 16px; gap: 12px; margin-bottom: 24px; }
+.hero-col-patient { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.hero-col-complaint, .hero-col-modality, .hero-col-time { flex: none; width: 100%; text-align: left !important; font-size: 12px; }
+.hero-col-time { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.08); }
+.hero-col-track { margin-left: 0; flex-shrink: 0; }
 }
 
 .request-section { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; padding: 24px; margin-bottom: 24px; }
@@ -245,7 +265,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .summary-header-actions button.dark-btn { background: #374151; color: #fff; border-color: #374151; }
 
 @media (max-width: 768px) {
-.summary-header-wide { flex-direction: column; align-items: flex-start; gap: 16px; padding: 16px 4vw; }
+.summary-header-wide { flex-direction: column; align-items: flex-start; gap: 16px; padding: 16px; }
 .summary-header-actions { flex-wrap: wrap; width: 100%; }
 .summary-header-actions button { flex: 1; min-width: 80px; text-align: center; padding: 8px;}
 }
@@ -354,7 +374,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .report-actions button:hover { background: #e5e7eb; }
 
 @media (max-width: 992px) {
-.summary-grid { grid-template-columns: 1fr; }
+.summary-grid { grid-template-columns: 1fr; padding: 16px; }
 .report-editor { position: static; }
 .ai-summary-box { flex-direction: column; padding: 16px; }
 .domain-details-grid { flex-direction: column; }
@@ -366,9 +386,6 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .support-grid { grid-template-columns: 1fr; }
 }
 
-/* ==========================================================================
-QnA View (限定問答 - 響應式「來源」及「引用與筆記」展開/收合)
-========================================================================== */
 .qna-header-top { background: #fff; border-bottom: 1px solid var(--color-border); padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 56px; flex-shrink: 0; gap: 10px; }
 .qna-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .qna-header-title { font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
@@ -395,7 +412,6 @@ QnA View (限定問答 - 響應式「來源」及「引用與筆記」展開/收
 .qna-tab { padding: 6px 12px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 13px; cursor: pointer; background: #fff; display: flex; align-items: center; gap: 6px;}
 .qna-tab.active { background: #f3f4f6; font-weight: bold; }
 
-/* 窄螢幕下「來源」及「引用與筆記」開合工具列 */
 .qna-mobile-toggles { display: none; gap: 8px; margin-bottom: 12px; }
 .qna-drawer-toggle-btn { flex: 1; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 6px; background: #fff; color: var(--color-text); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
 .qna-drawer-toggle-btn.active { background: #111827; color: #fff; border-color: #111827; }
@@ -442,7 +458,6 @@ QnA View (限定問答 - 響應式「來源」及「引用與筆記」展開/收
 .qna-mobile-toggles { display: flex; }
 .qna-drawer-close-btn { display: inline-flex; }
 
-/* 窄螢幕下預設收合「來源」與「引用與筆記」，點擊按鈕後展開 */
 .qna-lib-sidebar { display: none; width: 100%; border-right: none; border-bottom: 1px solid var(--color-border); padding: 16px; background: #fff; }
 .qna-lib-sidebar.mobile-open { display: flex; }
 
@@ -457,12 +472,10 @@ QnA View (限定問答 - 響應式「來源」及「引用與筆記」展開/收
 .qna-right-content { min-height: 200px; }
 }
 
-/* ==========================================================================
-BlueLight Viewer (響應式防遮擋與放大修正)
-========================================================================== */
+/* BlueLight Viewer */
 .viewer-header { background: #171717; border-bottom: 1px solid #262626; display: flex; justify-content: space-between; align-items: center; padding: 0 16px; min-height: 56px; flex-shrink: 0; position: relative; z-index: 100; gap: 12px; }
 .viewer-header__actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.viewer-layout { display: flex; height: calc(100vh - 56px); background: #0a0a0a; color: #d4d4d4; }
+.viewer-layout { display: flex; height: calc(100vh - 56px); background: #0a0a0a; color: #d4d4d4; width: 100%; max-width: 100%; }
 .viewer-sidebar-left { width: 140px; background: #121212; border-right: 1px solid #262626; display: flex; flex-direction: column; flex-shrink: 0; }
 .viewer-sidebar-left__title { padding: 12px; font-size: 13px; font-weight: bold; color: #fff; border-bottom: 1px solid #262626; text-align: center; }
 .viewer-sidebar-left__body { padding: 16px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -476,8 +489,8 @@ BlueLight Viewer (響應式防遮擋與放大修正)
 .viewer-info-row span:last-child { text-align: right; color: #e5e5e5; }
 .viewer-info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
 .viewer-note-textarea { width: 100%; height: 220px; background: transparent; border: none; color: #fff; outline: none; resize: none; font-size: 12px; }
-.viewer-main { flex: 1; position: relative; display: block; background: #000; min-width: 0; height: 100%; overflow: hidden; }
-.bluelight-frame { width: 100%; height: 100%; border: none; display: block; }
+.viewer-main { flex: 1; position: relative; display: block; background: #000; width: 100%; max-width: 100%; min-width: 0; height: 100%; overflow: hidden; }
+.bluelight-frame { width: 100%; max-width: 100%; height: 100%; border: none; display: block; }
 
 .viewer-layout.viewer-expanded .viewer-sidebar-left,
 .viewer-layout.viewer-expanded .viewer-sidebar-right { display: none !important; }
@@ -486,15 +499,15 @@ BlueLight Viewer (響應式防遮擋與放大修正)
 @media (max-width: 992px) {
 .viewer-header { padding: 8px 12px; flex-wrap: wrap; }
 #viewer-patient-meta-title { display: none; }
-.viewer-layout { flex-direction: column; height: auto; min-height: calc(100vh - 56px); }
+.viewer-layout { flex-direction: column; height: auto; min-height: calc(100vh - 56px); width: 100%; max-width: 100%; }
 .viewer-sidebar-left { width: 100%; border-right: none; border-bottom: 1px solid #262626; flex-direction: row; align-items: center; padding: 8px 14px; gap: 12px; }
 .viewer-sidebar-left__title { display: none; }
 .viewer-sidebar-left__body { padding: 0; flex-direction: row; gap: 12px; align-items: center; }
 .viewer-thumb-box { width: 52px; height: 40px; font-size: 11px; line-height: 1.2; }
 .viewer-thumb-meta { text-align: left; }
 
-.viewer-main { flex: 0 0 auto; width: 100%; height: 80vh; min-height: 640px; overflow: hidden; }
-.bluelight-frame { width: 100%; height: 100%; min-height: 640px; }
+.viewer-main { flex: 0 0 auto; width: 100%; max-width: 100%; height: 84vh; min-height: 680px; overflow: hidden; }
+.bluelight-frame { width: 100%; max-width: 100%; height: 100%; min-height: 680px; }
 
 .viewer-sidebar-right { width: 100%; border-left: none; border-top: 1px solid #262626; overflow-y: visible; }
 }
@@ -557,27 +570,29 @@ BlueLight Viewer (響應式防遮擋與放大修正)
 <main class="main-content">
 <div class="main-section-header">
 <h3 class="main-section-title">最新病患 <small>依資料建立時間</small></h3>
-<div style="display:flex; gap:8px;">
+<div style="display:flex; gap:8px; align-items:center;">
 <button class="btn-outline" style="padding:4px 10px;" onclick="prevPatient()">←</button>
 <span style="font-size:12px; color:var(--color-text-sub); line-height:28px;" id="hero-pagination">1 / 1</span>
 <button class="btn-outline" style="padding:4px 10px;" onclick="nextPatient()">→</button>
 </div>
 </div>
 <div class="patient-hero-card" id="hero-card" onclick="navigate('summary', 0)">
-<div style="flex:1.3;">
+<div class="hero-col-patient">
+<div>
 <div style="font-size:18px; font-weight:bold; margin-bottom:8px;">
 <span id="hero-name">王小明</span> <span class="hero-new-tag">New</span>
 </div>
 <div style="font-size:12px; color:var(--color-text-sub); word-break:break-all;" id="hero-meta">...</div>
 </div>
-<div style="flex:1; text-align:center; font-size:13px;" id="hero-complaint">門診 (症狀就診 - 腎盂腎炎)</div>
-<div style="flex:1; text-align:center; font-size:13px;" id="hero-modality">THE GENERAL HOSPITAL CORPORATION</div>
-<div style="flex:1; text-align:right;">
-<div style="font-size:13px; font-weight:bold; margin-bottom:4px;" id="hero-time">2018/02/13 13:04</div>
-<div style="font-size:11px; color:var(--color-text-sub);">資料包 • 最近就診</div>
-</div>
-<div style="margin-left:12px;" onclick="event.stopPropagation()">
+<div class="hero-col-track" onclick="event.stopPropagation()">
 <button class="star-btn hero__track-btn active" id="hero-track-btn">☆</button>
+</div>
+</div>
+<div class="hero-col-complaint" id="hero-complaint">門診 (症狀就診 - 腎盂腎炎)</div>
+<div class="hero-col-modality" id="hero-modality">THE GENERAL HOSPITAL CORPORATION</div>
+<div class="hero-col-time">
+<div style="font-size:13px; font-weight:bold;" id="hero-time">2018/02/13 13:04</div>
+<div style="font-size:11px; color:var(--color-text-sub);">資料包 • 最近就診</div>
 </div>
 </div>
 
@@ -666,7 +681,6 @@ BlueLight Viewer (響應式防遮擋與放大修正)
 <span>每頁 <select style="padding:2px 8px;"><option>20</option></select> 筆</span>
 <div class="view-toggles" data-page="query">
 <button type="button" class="active" data-mode="list" onclick="setViewMode('query', 'list', this)">條列式</button>
-<button type="button" class="active" style="display:none;"></button>
 <button type="button" data-mode="card" onclick="setViewMode('query', 'card', this)">卡片式</button>
 </div>
 </div>
@@ -845,7 +859,7 @@ BlueLight Viewer (響應式防遮擋與放大修正)
 <div class="ai-summary-box" id="global-ai-summary">
 <div style="font-size:16px; font-weight:bold; margin-bottom:16px;">AI 病患摘要</div>
 <div id="packet-summary-text" style="text-align:justify;">
-一名 27 歲女性病患（王小明，出生日期 1999-07-02，Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8），最近於 2018-02-13 因腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至 THE GENERAL HOSPITAL CORPORATION 症狀門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，並因頭痛評估接受腦部核磁共振掃描（Brain MRI，共 28 張切片）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]（目前尚無獨立之放射科判讀報告）。當日尿液檢查顯示亞硝酸鹽陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]、白血球酯酶 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]、尿潛血 + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]、顯微鏡白血球 26.644 /HPF [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]，且尿液細菌培養檢出大腸桿菌（Escherichia coli）> 100,000 CFU/mL [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]；已接受抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2] 並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（每日兩次，每次一錠）[MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]，該病況紀錄已於 2018-02-14 緩解。既往病史包含 2017-09-08 因牙齦炎與牙齦疾病接受牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2017-08-25 體檢紀錄血壓 114/66 mmHg、心率 100 次/分、BMI 33.12 kg/m²（身高 178.2 cm、體重 105.1 kg）、從未吸菸，且於 2017 年曾有壓力與親密伴侶暴力篩檢紀錄（均已緩解）；2016-09-26 曾因腳踝扭傷至急診就醫，開立 Ibuprofen 200 mg 需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f] 並完成物理治療照護計畫 [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]。目前仍持續進行自 2006 年起之體重管理計畫 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]，無已知過敏史。
+一名 27 歲女性病患（王小明，出生日期 1999-07-02，Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8），最近於 2018-02-13 因腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至 THE GENERAL HOSPITAL CORPORATION 症狀門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，並因頭痛評估接受腦部核磁共振掃描（Brain MRI，共 28 張切片）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]（目前尚無獨立之放射科判讀報告）。當日尿液檢查顯示亞硝酸鹽陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]、白血球酯酶 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]、尿潛血 + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]、顯微鏡白血球 26.644 /HPF [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]，且尿液細菌培養檢出大腸桿菌（Escherichia coli）&gt; 100,000 CFU/mL [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]；已接受抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2] 並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（每日兩次，每次一錠）[MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]，該病況紀錄已於 2018-02-14 緩解。既往病史包含 2017-09-08 因牙齦炎與牙齦疾病接受牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2017-08-25 體檢紀錄血壓 114/66 mmHg、心率 100 次/分、BMI 33.12 kg/m²（身高 178.2 cm、體重 105.1 kg）、從未吸菸，且於 2017 年曾有壓力與親密伴侶暴力篩檢紀錄（均已緩解）；2016-09-26 曾因腳踝扭傷至急診就醫，開立 Ibuprofen 200 mg 需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f] 並完成物理治療照護計畫 [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]。目前仍持續進行自 2006 年起之體重管理計畫 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]，無已知過敏史。
 </div>
 <div class="alert-yellow" style="margin-top:20px;">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:2px; flex-shrink:0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -986,7 +1000,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <div style="font-size:13px; font-weight:bold; margin-bottom:8px;">報告內容</div>
 <textarea class="report-textarea" id="report-content" style="height:350px;">病患王小明（27 歲女性，Patient ID: 279ca2a4-c2d9-4045-83de-f604ed069fe8）於 2018-02-13 因腎盂腎炎 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，同日並因頭痛評估接受腦部核磁共振掃描 (Brain MRI，共 28 張切片，ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880)，目前尚無獨立放射科判讀報告。
 
-尿液檢驗顯示亞硝酸鹽陽性、白血球酯酶 1+、尿潛血 +，尿沉渣白血球 26.644 /HPF，且尿液培養檢出 Escherichia coli > 100,000 CFU/mL (Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7)。當次已給予抗生素治療並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，每日兩次、每次一錠 (MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b)。
+尿液檢驗顯示亞硝酸鹽陽性、白血球酯酶 1+、尿潛血 +，尿沉渣白血球 26.644 /HPF，且尿液培養檢出 Escherichia coli &gt; 100,000 CFU/mL (Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7)。當次已給予抗生素治療並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，每日兩次、每次一錠 (MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b)。
 
 既往病史包括 2017-09-08 牙齦炎與牙齦疾病（牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療），以及 2016-09-26 腳踝扭傷急診紀錄。目前持續執行體重管理計畫，無已知過敏史。</textarea>
 <div class="report-actions">
@@ -1000,9 +1014,6 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 </div>
 </div>
 
-<!-- ==========================================
-QnA View (限定問答)
-========================================== -->
 <div id="view-qna" class="page-view">
 <header class="qna-header-top">
 <div class="qna-header-left">
@@ -1020,7 +1031,6 @@ QnA View (限定問答)
 </header>
 
 <div class="qna-layout">
-<!-- Left Sidebar: YOUR LIBRARY (來源) -->
 <aside class="qna-lib-sidebar" id="qna-sources-drawer">
 <div class="qna-lib-title">YOUR LIBRARY</div>
 <div class="qna-lib-header">
@@ -1048,7 +1058,6 @@ QnA View (限定問答)
 <div style="margin-top:auto; font-size:11px; color:#888;">● 依帳號權限顯示可用文件</div>
 </aside>
 
-<!-- Main Chat Area: ASK YOUR SOURCES -->
 <main class="qna-main-area">
 <div class="qna-main-header">
 <div class="qna-main-title">ASK YOUR SOURCES</div>
@@ -1057,7 +1066,6 @@ QnA View (限定問答)
 <button type="button" class="btn-outline" style="font-size:12px; padding:4px 12px; color:#888;" onclick="resetQnAChat()">清空對話</button>
 </div>
 
-<!-- 響應式「來源」及「引用與筆記」展開/收合按鈕 -->
 <div class="qna-mobile-toggles">
 <button type="button" class="qna-drawer-toggle-btn" id="btn-toggle-sources-drawer" onclick="toggleQnaDrawer('sources')">
 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
@@ -1116,7 +1124,6 @@ QnA View (限定問答)
 </div>
 </main>
 
-<!-- Right Sidebar: WORKSPACE (引用與筆記) -->
 <aside class="qna-right-sidebar" id="qna-workspace-drawer">
 <div class="qna-right-header">
 <div class="qna-right-title">WORKSPACE</div>
@@ -1262,7 +1269,6 @@ document.querySelectorAll('.page-header__nav.open').forEach(el => el.classList.r
 document.querySelectorAll('.hamburger-btn.open').forEach(el => el.classList.remove('open'));
 }
 
-// 限定問答：「來源」及「引用與筆記」展開/收合
 function toggleQnaDrawer(which, forceState = null) {
 const isSources = which === 'sources';
 const drawer = document.getElementById(isSources ? 'qna-sources-drawer' : 'qna-workspace-drawer');
@@ -1710,7 +1716,7 @@ return `
 const domainDataMap = {
 'diagnosis': {
 title: '診斷詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M5 3H3v3M13 3h2v3"/><path d="M9 12v3a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="10" r="2"/></svg>',
-aiSummary: `<div class="thought-block"><unused94>thought<br>使用者要求總結病患王小明的診斷脈絡。<br><br>計畫如下：<br>1. 辨識病患基本資料（女性、1999-07-02 出生、27 歲）。<br>2. 彙整 Condition 資源中的主要臨床診斷與其臨床狀態、起始與緩解日期。<br>3. 確保每項診斷均精準對應原始 FHIR 來源 ID。<br><br>**診斷清單:**<br>- 腎盂腎炎 (Pyelonephritis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]<br>- 牙齦疾病 (Gingival disease): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]<br>- 牙齦炎 (Gingivitis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4]<br>- 壓力 (Stress): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]<br>- 腳踝扭傷 (Sprain of ankle) 與扭傷 (Sprain): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657, Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]<br><br>草稿已完成。<unused95></div>27 歲女性病患王小明（Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8）最近於 2018-02-13 確診腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已於 2018-02-14 標記為緩解。既往病史包含 2017-08-25 診斷之牙齦炎 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4] 與 2017-09-08 牙齦疾病 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]（均已緩解）、2017-08-25 紀錄之壓力 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]（已緩解），以及 2016-09-26 因急診就醫確認之腳踝扭傷 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657] 與扭傷 [Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]（於 2016-11-01 緩解）。`,
+aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患王小明的診斷脈絡。<br><br>計畫如下：<br>1. 辨識病患基本資料（女性、1999-07-02 出生、27 歲）。<br>2. 彙整 Condition 資源中的主要臨床診斷與其臨床狀態、起始與緩解日期。<br>3. 確保每項診斷均精準對應原始 FHIR 來源 ID。<br><br>**診斷清單:**<br>- 腎盂腎炎 (Pyelonephritis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]<br>- 牙齦疾病 (Gingival disease): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]<br>- 牙齦炎 (Gingivitis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4]<br>- 壓力 (Stress): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]<br>- 腳踝扭傷 (Sprain of ankle) 與扭傷 (Sprain): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657, Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]<br><br>草稿已完成。&lt;unused95&gt;</div>27 歲女性病患王小明（Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8）最近於 2018-02-13 確診腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已於 2018-02-14 標記為緩解。既往病史包含 2017-08-25 診斷之牙齦炎 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4] 與 2017-09-08 牙齦疾病 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]（均已緩解）、2017-08-25 紀錄之壓力 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]（已緩解），以及 2016-09-26 因急診就醫確認之腳踝扭傷 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657] 與扭傷 [Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]（於 2016-11-01 緩解）。`,
 records: [
 { title: '腎盂腎炎 (Pyelonephritis)', status: '已緩解 (resolved) • 已確認 (confirmed)', onset: '2018-02-13 13:04', abatement: '2018-02-14 01:38', code: 'SNOMED CT: 45816000', source: 'Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1' },
 { title: '牙齦疾病 (Gingival disease)', status: '已緩解 (resolved) • 已確認 (confirmed)', onset: '2017-09-08 15:55', abatement: '2017-09-08 17:46', code: 'SNOMED CT: 18718003', source: 'Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019' },
@@ -1722,7 +1728,7 @@ records: [
 },
 'imaging': {
 title: '影像詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg>',
-aiSummary: `<div class="thought-block"><unused94>thought<br>使用者要求總結病患先前的影像脈絡。<br>提供的影像資料包含一筆腦部核磁共振掃描（Brain MRI），檢查日期 2018-02-13，共 1 Series / 28 張 DICOM 切片（./97/1-01.dcm ~ 1-28.dcm），Study UID 為 1.2.840.99999999.76048997.1504883792656，來源：ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880。<br>檢查部位為腦部（Brain），檢查原因為頭痛評估，於 THE GENERAL HOSPITAL CORPORATION 執行。<br>目前來源資料中尚未附帶獨立之放射科判讀報告，依嚴格還原原則不自行捏造影像發現，建議醫師透過影像檢測器直接檢視原始切片。<br><br>草稿已準備就緒。<unused95></div>病患於 2018-02-13 在 THE GENERAL HOSPITAL CORPORATION 因頭痛評估接受腦部核磁共振掃描（Brain MRI，Modality: MRI，檢查部位：腦部 [Brain]，1 Series / 28 張 DICOM 切片，Study UID: 1.2.840.99999999.76048997.1504883792656）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]。目前該筆腦部影像尚無獨立之放射科判讀報告，可點擊上方「影像檢測器」檢視 28 張原始切片。`,
+aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患先前的影像脈絡。<br>提供的影像資料包含一筆腦部核磁共振掃描（Brain MRI），檢查日期 2018-02-13，共 1 Series / 28 張 DICOM 切片（./97/1-01.dcm ~ 1-28.dcm），Study UID 為 1.2.840.99999999.76048997.1504883792656，來源：ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880。<br>檢查部位為腦部（Brain），檢查原因為頭痛評估，於 THE GENERAL HOSPITAL CORPORATION 執行。<br>目前來源資料中尚未附帶獨立之放射科判讀報告，依嚴格還原原則不自行捏造影像發現，建議醫師透過影像檢測器直接檢視原始切片。<br><br>草稿已準備就緒。&lt;unused95&gt;</div>病患於 2018-02-13 在 THE GENERAL HOSPITAL CORPORATION 因頭痛評估接受腦部核磁共振掃描（Brain MRI，Modality: MRI，檢查部位：腦部 [Brain]，1 Series / 28 張 DICOM 切片，Study UID: 1.2.840.99999999.76048997.1504883792656）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]。目前該筆腦部影像尚無獨立之放射科判讀報告，可點擊上方「影像檢測器」檢視 28 張原始切片。`,
 records: [
 {
 title: '腦部核磁共振掃描 (Brain MRI)',
@@ -1739,7 +1745,7 @@ source: 'ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880'
 },
 'medication': {
 title: '用藥詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2"><path d="m9 4-5 5a6 6 0 0 0 8.5 8.5l5-5A6 6 0 0 0 9 4Z"/><path d="m6.5 6.5 8.5 8.5"/></svg>',
-aiSummary: `<div class="thought-block"><unused94>thought<br>使用者要求總結病患之用藥與過敏史脈絡。<br><br>**用藥紀錄:**<br>1. amoxicillin 875 MG / clavulanate 125 MG Oral Tablet (2018-02-13, completed) - 每日 2 次每次 1 錠，適應症：腎盂腎炎 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]<br>2. sodium fluoride 0.0272 MG/MG Oral Gel (2017-09-08, completed) - 適應症：牙齦炎 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]<br>3. Ibuprofen 200 MG Oral Tablet (2016-09-26, completed) - 需要時服用 (Take as needed) [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]<br><br>**過敏資訊:**<br>- 臨床病歷記載 No Known Allergies（無已知過敏史），未見結構化 AllergyIntolerance 資源。<br><br>草稿完成。<unused95></div>病患共有三筆歷史處方紀錄（狀態均為已完成）：最近於 2018-02-13 因腎盂腎炎開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，用法為每日兩次、每次一錠 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]；2017-09-08 因牙齦炎開立並使用 Sodium fluoride 0.0272 mg/mg 口腔凝膠 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2016-09-26 因扭傷急診開立 Ibuprofen 200 mg 口服錠，指示需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]。臨床病歷記載無已知藥物過敏史。`,
+aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患之用藥與過敏史脈絡。<br><br>**用藥紀錄:**<br>1. amoxicillin 875 MG / clavulanate 125 MG Oral Tablet (2018-02-13, completed) - 每日 2 次每次 1 錠，適應症：腎盂腎炎 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]<br>2. sodium fluoride 0.0272 MG/MG Oral Gel (2017-09-08, completed) - 適應症：牙齦炎 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]<br>3. Ibuprofen 200 MG Oral Tablet (2016-09-26, completed) - 需要時服用 (Take as needed) [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]<br><br>**過敏資訊:**<br>- 臨床病歷記載 No Known Allergies（無已知過敏史），未見結構化 AllergyIntolerance 資源。<br><br>草稿完成。&lt;unused95&gt;</div>病患共有三筆歷史處方紀錄（狀態均為已完成）：最近於 2018-02-13 因腎盂腎炎開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，用法為每日兩次、每次一錠 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]；2017-09-08 因牙齦炎開立並使用 Sodium fluoride 0.0272 mg/mg 口腔凝膠 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2016-09-26 因扭傷急診開立 Ibuprofen 200 mg 口服錠，指示需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]。臨床病歷記載無已知藥物過敏史。`,
 records: [
 { title: 'Amoxicillin 875 MG / Clavulanate 125 MG Oral Tablet', status: '已完成 (completed) • Community', dosage: '每日 2 次，每次 1 錠（口服）', reason: '腎盂腎炎 (Pyelonephritis)', onset: '2018-02-13 14:38', requester: 'Dr. Paris331 Ruecker817', source: 'MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b' },
 { title: 'Sodium fluoride 0.0272 MG/MG Oral Gel', status: '已完成 (completed) • Outpatient', dosage: '門診牙科局部施用（詳見 MedicationAdministration/0427faa3-65e3-d52e-ffae-97597ebb8395）', reason: '牙齦炎 (Gingivitis)', onset: '2017-09-08 18:36', requester: 'Dr. Paris331 Ruecker817', source: 'MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80' },
@@ -1748,7 +1754,7 @@ records: [
 },
 'treatment': {
 title: '治療詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M3 10v11M21 13v8M3 18h18"/><path d="M3 13h15a3 3 0 0 1 3 3v2"/><rect x="5" y="9" width="5" height="4" rx="1"/><path d="M16 3v6M13 6h6"/></svg>',
-aiSummary: `<div class="thought-block"><unused94>thought<br>使用者要求總結處置 (Procedure) 與照護計畫 (CarePlan)。<br><br>**主要處置:**<br>- 2018-02-13: 抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]、尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49]<br>- 2017-09-08: 牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987]、牙齦上/下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]<br><br>**照護計畫:**<br>- 2016-09-26 ~ 2016-11-01: 物理治療照護計畫 (completed) [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]<br>- 2006-06-23 起: 體重管理計畫 (active) [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]<br><br>草稿完成。<unused95></div>病患於 2018-02-13 接受尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49] 及抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]；2017-09-08 因牙齦炎與牙齦疾病完成牙齦上及牙齦下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]、牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987] 與術後照護及塗氟治療。照護計畫方面，2016-09-26 至 2016-11-01 已完成針對腳踝扭傷的物理治療計畫（含 RICE 與伸展運動）[CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]，而自 2006-06-23 啟動的體重管理計畫（熱量限制飲食、增加體能活動）目前仍維持進行中狀態 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]。`,
+aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結處置 (Procedure) 與照護計畫 (CarePlan)。<br><br>**主要處置:**<br>- 2018-02-13: 抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]、尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49]<br>- 2017-09-08: 牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987]、牙齦上/下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]<br><br>**照護計畫:**<br>- 2016-09-26 ~ 2016-11-01: 物理治療照護計畫 (completed) [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]<br>- 2006-06-23 起: 體重管理計畫 (active) [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]<br><br>草稿完成。&lt;unused95&gt;</div>病患於 2018-02-13 接受尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49] 及抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]；2017-09-08 因牙齦炎與牙齦疾病完成牙齦上及牙齦下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]、牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987] 與術後照護及塗氟治療。照護計畫方面，2016-09-26 至 2016-11-01 已完成針對腳踝扭傷的物理治療計畫（含 RICE 與伸展運動）[CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]，而自 2006-06-23 啟動的體重管理計畫（熱量限制飲食、增加體能活動）目前仍維持進行中狀態 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]。`,
 records: [
 { title: '抗生素治療 (Antibiotic therapy)', status: 'completed', reason: '腎盂腎炎 (Pyelonephritis)', detail: '配合尿液培養結果施行抗生素治療', onset: '2018-02-13 14:28', location: 'THE GENERAL HOSPITAL CORPORATION', source: 'Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2' },
 { title: '尿液分析與顯微鏡/培養檢查', status: 'completed', reason: '腎盂腎炎評估', detail: 'Urinalysis with reflex to microscopy and culture', onset: '2018-02-13 14:18', location: 'THE GENERAL HOSPITAL CORPORATION', source: 'Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49' },
@@ -1760,7 +1766,7 @@ records: [
 },
 'observation': {
 title: '檢驗詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M8 3h8M10 3v7l-5 8a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-8V3"/><path d="M8 15h8"/><path d="M10 18h.01M14 18h.01"/></svg>',
-aiSummary: `<div class="thought-block"><unused94>thought<br>使用者要求總結病患之檢驗與生命徵象觀察結果。<br><br>**2018-02-13 尿液檢驗 (Laboratory):**<br>- 尿液培養: > 100,000 CFU/mL Escherichia coli [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]<br>- 尿沉渣白血球: 26.644 /[HPF] [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]<br>- 尿液亞硝酸鹽: 陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]<br>- 尿液白血球酯酶: 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]<br>- 尿潛血: + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]<br>- 尿蛋白: 10.595 mg/dL [Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16]<br><br>**2017-08-25 生命徵象與篩檢 (Vital Signs / Survey):**<br>- 血壓: 114/66 mmHg [Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9]<br>- 心率: 100 /min [Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb]<br>- BMI: 33.12 kg/m2 (身高 178.2 cm, 體重 105.1 kg) [Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56]<br>- PHQ-2 憂鬱篩檢: 1 分 [Observation/279ca2a4-c2d9-4045-77f0-a3000c167918]<br><br>草稿完成。<unused95></div>2018-02-13 尿液檢驗顯示明顯泌尿道感染徵象：尿液細菌培養檢出大腸桿菌（Escherichia coli）> 100,000 CFU/mL（Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7），尿沉渣白血球為 26.644 /[HPF]（Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7），亞硝酸鹽呈陽性（Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3），白血球酯酶為 1+（Observation/279ca2a4-c2d9-4045-886e-25517abe6497），尿潛血為 +（Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f），尿蛋白 10.595 mg/dL（Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16）。先前 2017-08-25 生命徵象紀錄血壓 114/66 mmHg（Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9）、心率 100 次/分（Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb）、BMI 33.12 kg/m²（Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56），PHQ-2 憂鬱量表為 1 分（Observation/279ca2a4-c2d9-4045-77f0-a3000c167918）。`,
+aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患之檢驗與生命徵象觀察結果。<br><br>**2018-02-13 尿液檢驗 (Laboratory):**<br>- 尿液培養: &gt; 100,000 CFU/mL Escherichia coli [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]<br>- 尿沉渣白血球: 26.644 /[HPF] [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]<br>- 尿液亞硝酸鹽: 陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]<br>- 尿液白血球酯酶: 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]<br>- 尿潛血: + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]<br>- 尿蛋白: 10.595 mg/dL [Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16]<br><br>**2017-08-25 生命徵象與篩檢 (Vital Signs / Survey):**<br>- 血壓: 114/66 mmHg [Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9]<br>- 心率: 100 /min [Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb]<br>- BMI: 33.12 kg/m2 (身高 178.2 cm, 體重 105.1 kg) [Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56]<br>- PHQ-2 憂鬱篩檢: 1 分 [Observation/279ca2a4-c2d9-4045-77f0-a3000c167918]<br><br>草稿完成。&lt;unused95&gt;</div>2018-02-13 尿液檢驗顯示明顯泌尿道感染徵象：尿液細菌培養檢出大腸桿菌（Escherichia coli）&gt; 100,000 CFU/mL（Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7），尿沉渣白血球為 26.644 /[HPF]（Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7），亞硝酸鹽呈陽性（Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3），白血球酯酶為 1+（Observation/279ca2a4-c2d9-4045-886e-25517abe6497），尿潛血為 +（Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f），尿蛋白 10.595 mg/dL（Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16）。先前 2017-08-25 生命徵象紀錄血壓 114/66 mmHg（Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9）、心率 100 次/分（Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb）、BMI 33.12 kg/m²（Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56），PHQ-2 憂鬱量表為 1 分（Observation/279ca2a4-c2d9-4045-77f0-a3000c167918）。`,
 records: [
 { title: '尿液細菌培養 (Urine Culture)', result: '> 100,000 CFU/mL Escherichia coli', status: 'final', category: 'Laboratory', date: '2018-02-13 14:28', source: 'Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7' },
 { title: '尿沉渣白血球 (Leukocytes, HPF)', result: '26.644 /[HPF]', status: 'final', category: 'Laboratory', date: '2018-02-13 14:28', source: 'Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7' },
@@ -2142,18 +2148,47 @@ log.scrollTop = log.scrollHeight;
 }, 450);
 }
 
+// ==========================================
+// BLUELIGHT VIEWER (撐滿粉紫色 viewport 框 + 避免開頭字遮擋)
+// ==========================================
 function syncBlueLightViewport(iframeWin) {
 if (!iframeWin) return;
 try {
+const doc = iframeWin.document;
 if (iframeWin.innerWidth <= 992) {
-const iconList = iframeWin.document.getElementById('icon-list');
-const barHeight = iconList ? Math.ceil(iconList.getBoundingClientRect().height) : 52;
-const targets = iframeWin.document.querySelectorAll('#container, #Viewer_Picture, .container, #canvas-container');
-targets.forEach(el => {
-el.style.setProperty('top', `${barHeight + 2}px`, 'important');
-el.style.setProperty('height', `calc(100% - ${barHeight + 2}px)`, 'important');
-el.style.setProperty('width', '100%', 'important');
+const iconList = doc.getElementById('icon-list');
+const barHeight = iconList ? Math.ceil(iconList.getBoundingClientRect().height) : 54;
+const availH = Math.max(460, (iframeWin.innerHeight || 680) - barHeight - 8);
+const availW = Math.max(280, (iframeWin.innerWidth || 390) - 4);
+
+const containers = doc.querySelectorAll('#container, #Viewer_Picture, .container, #canvas-container');
+containers.forEach(el => {
+el.style.setProperty('position', 'relative', 'important');
+el.style.setProperty('top', `${barHeight + 4}px`, 'important');
 el.style.setProperty('left', '0px', 'important');
+el.style.setProperty('right', '0px', 'important');
+el.style.setProperty('width', `${availW}px`, 'important');
+el.style.setProperty('max-width', '100%', 'important');
+el.style.setProperty('height', `${availH}px`, 'important');
+el.style.setProperty('margin', '0 auto', 'important');
+});
+
+// 拉寬所有 viewport / 畫布元素並避免上方開頭字被遮擋
+const vpNodes = doc.querySelectorAll('[id*="viewport"], [id*="Viewport"], [class*="viewport"], [class*="Viewport"]');
+vpNodes.forEach(vp => {
+if (vp.id === 'icon-list') return;
+vp.style.setProperty('left', '0px', 'important');
+vp.style.setProperty('right', '0px', 'important');
+vp.style.setProperty('width', `${availW}px`, 'important');
+vp.style.setProperty('max-width', '100%', 'important');
+if (vp.offsetHeight > 0 && vp.offsetHeight > availH) {
+vp.style.setProperty('height', `${availH}px`, 'important');
+}
+});
+
+doc.querySelectorAll('canvas').forEach(cv => {
+cv.style.setProperty('max-width', '100%', 'important');
+cv.style.setProperty('max-height', '100%', 'important');
 });
 }
 iframeWin.dispatchEvent(new Event('resize'));
@@ -2209,13 +2244,14 @@ const iframeWin = iframe.contentWindow;
 try {
 const style = iframeWin.document.createElement('style');
 style.innerHTML = `
-html, body { height: 100% !important; margin: 0 !important; overflow: hidden !important; }
+html, body { height: 100% !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; overflow: hidden !important; }
 @media (max-width: 992px) {
 #icon-list {
 position: fixed !important;
 top: 0 !important;
 left: 0 !important;
 right: 0 !important;
+width: 100% !important;
 display: flex !important;
 flex-wrap: nowrap !important;
 overflow-x: auto !important;
@@ -2232,11 +2268,19 @@ background: #171717 !important;
 #LeftPicture { display: none !important; }
 #container, #Viewer_Picture, .container, #canvas-container {
 position: relative !important;
-top: 54px !important;
-height: calc(100% - 54px) !important;
+top: 56px !important;
+height: calc(100% - 60px) !important;
 width: 100% !important;
+max-width: 100% !important;
 left: 0 !important;
+right: 0 !important;
 z-index: 1 !important;
+}
+[id*="viewport"], [id*="Viewport"], [class*="viewport"], [class*="Viewport"] {
+left: 0 !important;
+right: 0 !important;
+width: 100% !important;
+max-width: 100% !important;
 }
 }
 `;
