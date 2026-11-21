@@ -527,12 +527,14 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .viewer-thumb-meta { font-size: 11px; color: #888; text-align: center; line-height: 1.4; }
 .viewer-sidebar-right { width: 320px; background: #121212; border-left: 1px solid #262626; display: flex; flex-direction: column; padding: 16px; gap: 16px; overflow-y: auto; flex-shrink: 0; }
 .viewer-panel-box { border: 1px solid #262626; border-radius: 4px; background: #171717; overflow: hidden; }
-.viewer-panel-header { background: #1a1a1a; padding: 10px 12px; font-size: 12px; font-weight: bold; border-bottom: 1px solid #262626; color: #fff; }
+.viewer-panel-header { background: #1a1a1a; padding: 10px 12px; font-size: 12px; font-weight: bold; border-bottom: 1px solid #262626; color: #fff; display: flex; justify-content: space-between; align-items: center; }
 .viewer-panel-content { padding: 12px; font-size: 12px; line-height: 1.8; color: #a3a3a3; }
 .viewer-info-row { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 8px; border-bottom: 1px solid #262626; padding-bottom: 8px;}
 .viewer-info-row span:last-child { text-align: right; color: #e5e5e5; }
 .viewer-info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
-.viewer-note-textarea { width: 100%; height: 220px; background: transparent; border: none; color: #fff; outline: none; resize: none; font-size: 12px; }
+.viewer-diag-textarea { width: 100%; min-height: 140px; background: #121212; border: 1px solid #333; border-radius: 4px; padding: 8px 10px; color: #f3f4f6; outline: none; resize: vertical; font-size: 12px; line-height: 1.65; }
+.viewer-diag-textarea:focus { border-color: #8dcfc4; }
+.viewer-note-textarea { width: 100%; height: 160px; background: transparent; border: none; color: #fff; outline: none; resize: none; font-size: 12px; line-height: 1.6; }
 .viewer-main { flex: 1; position: relative; display: block; background: #000; width: 100%; max-width: 100%; min-width: 0; height: 100%; overflow: hidden; }
 .bluelight-frame { width: 100%; max-width: 100%; height: 100%; border: none; display: block; }
 
@@ -550,8 +552,8 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .viewer-thumb-box { width: 52px; height: 40px; font-size: 11px; line-height: 1.2; }
 .viewer-thumb-meta { text-align: left; }
 
-.viewer-main { flex: 0 0 auto; width: 100%; max-width: 100%; height: 82vh; min-height: 620px; overflow: hidden; }
-.bluelight-frame { width: 100%; max-width: 100%; height: 100%; min-height: 620px; }
+.viewer-main { flex: 0 0 auto; width: 100%; max-width: 100%; height: 78vh; min-height: 560px; overflow: hidden; }
+.bluelight-frame { width: 100%; max-width: 100%; height: 100%; min-height: 560px; }
 
 .viewer-sidebar-right { width: 100%; border-left: none; border-top: 1px solid #262626; overflow-y: visible; }
 }
@@ -645,7 +647,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <h3 class="main-section-title"><span id="main-list-heading">全部個案</span> <small id="main-list-count">1 位病患</small></h3>
 <div class="view-toggles" data-page="main">
 <button type="button" class="active" data-mode="list" onclick="setViewMode('main', 'list', this)">條列式</button>
-<button type="button" data-mode="card" onclick="setViewMode('main', 'card', this)">卡片式</button>
+<button type="button" class="active" style="background:#fff;color:#111827;" data-mode="card" onclick="setViewMode('main', 'card', this)">卡片式</button>
 </div>
 </div>
 <div class="table-scroll" id="main-table-wrap">
@@ -1270,17 +1272,22 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 </div>
 </div>
 <div class="viewer-panel-box">
-<div class="viewer-panel-header">診斷報告 (DiagnosticReport)</div>
-<div class="viewer-panel-content" style="color:#888;">此筆腦部影像尚無診斷報告</div>
+<div class="viewer-panel-header">
+<span>診斷報告 (DiagnosticReport)</span>
+<button type="button" style="background:#262626; border:1px solid #404040; color:#8dcfc4; font-size:10px; padding:2px 8px; border-radius:2px; width:auto;" onclick="copyViewerDiagReport()">複製</button>
+</div>
+<div class="viewer-panel-content">
+<textarea id="viewer-diag-textarea" class="viewer-diag-textarea" oninput="saveViewerDiagDraft(this.value)" placeholder="請在此輸入腦部 MRI 診斷報告..."></textarea>
+</div>
 </div>
 
 <div class="viewer-panel-box" style="flex:1; display:flex; flex-direction:column;">
-<div class="viewer-panel-header" style="display:flex; justify-content:space-between;">
+<div class="viewer-panel-header">
 <span>筆記</span>
-<button style="background:#262626; border:1px solid #404040; color:#aaa; font-size:10px; padding:2px 6px; border-radius:2px; width:auto;" onclick="alert('已複製筆記')">複製</button>
+<button type="button" style="background:#262626; border:1px solid #404040; color:#aaa; font-size:10px; padding:2px 6px; border-radius:2px; width:auto;" onclick="copyViewerNote()">複製</button>
 </div>
 <div style="padding:12px; flex:1;">
-<textarea class="viewer-note-textarea" placeholder="輸入腦部影像判讀筆記 (切換影像時保留)"></textarea>
+<textarea id="viewer-note-textarea" class="viewer-note-textarea" placeholder="輸入腦部影像判讀筆記 (切換影像時保留)"></textarea>
 </div>
 </div>
 </aside>
@@ -1288,6 +1295,13 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 </div>
 
 <script>
+const DEFAULT_PREWRITTEN_DIAG_REPORT = `【影像檢查】腦部核磁共振掃描（Brain MRI • 1 Series / 28 張切片）
+【檢查時間】2018-02-13 13:45（檢查原因：頭痛評估）
+【初步影像觀察】（示範草稿，請依原始 DICOM 切片與臨床狀況核對）
+- 腦實質整體形態與對稱性大致尚可，未見明顯急性顱內出血、大片梗塞或顯著佔位性病灶。
+- 腦室系統大小與位置尚稱正常，中線結構無明顯偏移。
+- 建議結合病患當日急性腎盂腎炎感染與頭痛臨床表現追蹤評估，並由放射科醫師完成正式判讀確認。`;
+
 const demoPatients = [
 {
 id: "279ca2a4-c2d9-4045-83de-f604ed069fe8",
@@ -1302,7 +1316,8 @@ status: "未完成",
 severity: "safe",
 birth: "1999-07-02",
 hasInitialPacket: true,
-shownOnHome: true
+shownOnHome: true,
+diagReport: DEFAULT_PREWRITTEN_DIAG_REPORT
 },
 {
 id: "8f41c9b2-7a10-4c68-9e21-3b7d90a512e4",
@@ -1317,7 +1332,8 @@ status: "未完成",
 severity: "safe",
 birth: "1999-07-02",
 hasInitialPacket: false,
-shownOnHome: false
+shownOnHome: false,
+diagReport: DEFAULT_PREWRITTEN_DIAG_REPORT
 }
 ];
 
@@ -1639,6 +1655,33 @@ const BASE_REPORT_CONTENT = `病患王小明（27 歲女性，Patient ID: 279ca2
 
 既往病史包括 2017-09-08 牙齦炎與牙齦疾病（牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療），以及 2016-09-26 腳踝扭傷急診紀錄。目前持續執行體重管理計畫，無已知過敏史。`;
 
+function saveViewerDiagDraft(val) {
+const p = getCurrentPatient();
+if (p) p.diagReport = val;
+}
+
+function copyViewerDiagReport() {
+const el = document.getElementById('viewer-diag-textarea');
+if (!el) return;
+if (!el.value.trim()) {
+alert('診斷報告目前為空白');
+return;
+}
+navigator.clipboard?.writeText(el.value).catch(() => {});
+alert('已複製診斷報告');
+}
+
+function copyViewerNote() {
+const el = document.getElementById('viewer-note-textarea');
+if (!el) return;
+if (!el.value.trim()) {
+alert('筆記目前為空白');
+return;
+}
+navigator.clipboard?.writeText(el.value).catch(() => {});
+alert('已複製筆記');
+}
+
 function updateSummaryData() {
 const p = getCurrentPatient();
 if(p) {
@@ -1653,6 +1696,9 @@ const viewerTitle = document.getElementById('viewer-patient-name-title');
 const viewerMeta = document.getElementById('viewer-patient-meta-title');
 if (viewerTitle) viewerTitle.innerHTML = `${p.name} <span style="font-size:13px; font-weight:normal; color:#888; margin-left:8px;">${p.gender}</span>`;
 if (viewerMeta) viewerMeta.textContent = `Patient ID : ${p.id}`;
+
+const diagTextarea = document.getElementById('viewer-diag-textarea');
+if (diagTextarea) diagTextarea.value = p.diagReport || DEFAULT_PREWRITTEN_DIAG_REPORT;
 
 const btn = document.getElementById('summary-track-btn');
 if (btn) {
@@ -2489,7 +2535,60 @@ log.scrollTop = log.scrollHeight;
 }, 450);
 }
 
+// ==========================================
+// BLUELIGHT VIEWER (影像顯示強化 + 預寫診斷報告)
+// ==========================================
 let viewerLoadToken = 0;
+
+function renderFallbackBrainPreview(iframeWin, p) {
+try {
+const doc = iframeWin.document;
+const container = doc.querySelector('#container, #Viewer_Picture, .container, #canvas-container') || doc.body;
+if (!container) return;
+let fallback = doc.getElementById('suto-mobile-brain-fallback');
+if (!fallback) {
+fallback = doc.createElement('div');
+fallback.id = 'suto-mobile-brain-fallback';
+container.appendChild(fallback);
+}
+const barHeight = doc.getElementById('icon-list')
+  ? Math.ceil(doc.getElementById('icon-list').getBoundingClientRect().height)
+  : 52;
+fallback.style.cssText = `
+position: fixed;
+top: ${barHeight + 6}px;
+left: 8px;
+right: 8px;
+bottom: 8px;
+background: radial-gradient(circle at center, #1f2937 0%, #090d16 75%);
+border: 1px solid #374151;
+border-radius: 6px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+color: #e5e7eb;
+padding: 20px;
+text-align: center;
+z-index: 20;
+font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+`;
+fallback.innerHTML = `
+<svg width="150" height="150" viewBox="0 0 160 160" style="margin-bottom:14px;">
+<ellipse cx="80" cy="82" rx="54" ry="62" fill="#111827" stroke="#8dcfc4" stroke-width="2.5"/>
+<path d="M80 22 L80 142" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4 4"/>
+<path d="M52 54 Q66 44 76 58 Q64 70 50 62 Z" fill="none" stroke="#9ca3af" stroke-width="1.6"/>
+<path d="M108 54 Q94 44 84 58 Q96 70 110 62 Z" fill="none" stroke="#9ca3af" stroke-width="1.6"/>
+<path d="M46 84 Q62 76 74 88 Q60 100 46 92 Z" fill="none" stroke="#9ca3af" stroke-width="1.6"/>
+<path d="M114 84 Q98 76 86 88 Q100 100 114 92 Z" fill="none" stroke="#9ca3af" stroke-width="1.6"/>
+<ellipse cx="80" cy="96" rx="14" ry="18" fill="none" stroke="#8dcfc4" stroke-width="1.5"/>
+</svg>
+<div style="font-size:15px; font-weight:700; color:#8dcfc4; margin-bottom:6px;">腦部 MRI（Brain MRI • 28 張切片）</div>
+<div style="font-size:12px; color:#d1d5db; margin-bottom:8px;">病患：${p.name}（${p.gender}，${p.age}）• 2018-02-13</div>
+<div style="font-size:11px; color:#9ca3af; max-width:300px; line-height:1.6;">若未自動載入本機 ./97/ DICOM 切片，請確認本機伺服器已提供 ./97/ 影像檔，或於右側查看／修改預寫「診斷報告」。</div>
+`;
+} catch(e) {}
+}
 
 function syncBlueLightViewport(iframeWin) {
 if (!iframeWin) return;
@@ -2498,19 +2597,17 @@ const doc = iframeWin.document;
 if (iframeWin.innerWidth <= 992) {
 const iconList = doc.getElementById('icon-list');
 const barHeight = iconList ? Math.ceil(iconList.getBoundingClientRect().height) : 52;
-const availH = Math.max(460, (iframeWin.innerHeight || 620) - barHeight - 4);
+const availH = Math.max(460, (iframeWin.innerHeight || 560) - barHeight - 4);
 const availW = Math.max(280, iframeWin.innerWidth || 390);
 
 const containers = doc.querySelectorAll('#container, #Viewer_Picture, .container, #canvas-container');
 containers.forEach(el => {
-el.style.setProperty('position', 'relative', 'important');
+el.style.setProperty('position', 'fixed', 'important');
 el.style.setProperty('top', `${barHeight + 2}px`, 'important');
 el.style.setProperty('left', '0px', 'important');
 el.style.setProperty('right', '0px', 'important');
 el.style.setProperty('width', `${availW}px`, 'important');
-el.style.setProperty('max-width', '100%', 'important');
 el.style.setProperty('height', `${availH}px`, 'important');
-el.style.setProperty('margin', '0 auto', 'important');
 });
 
 const vpNodes = doc.querySelectorAll('[id*="viewport"], [id*="Viewport"], [class*="viewport"], [class*="Viewport"]');
@@ -2519,7 +2616,6 @@ if (vp.id === 'icon-list') return;
 vp.style.setProperty('left', '0px', 'important');
 vp.style.setProperty('right', '0px', 'important');
 vp.style.setProperty('width', `${availW}px`, 'important');
-vp.style.setProperty('max-width', '100%', 'important');
 });
 }
 iframeWin.dispatchEvent(new Event('resize'));
@@ -2574,7 +2670,7 @@ const iframeWin = iframe.contentWindow;
 try {
 const style = iframeWin.document.createElement('style');
 style.innerHTML = `
-html, body { height: 100% !important; width: 100% !important; max-width: 100% !important; margin: 0 !important; overflow: hidden !important; }
+html, body { height: 100% !important; width: 100% !important; margin: 0 !important; overflow: hidden !important; background: #000 !important; }
 @media (max-width: 992px) {
 #icon-list {
 position: fixed !important;
@@ -2597,13 +2693,12 @@ background: #171717 !important;
 #icon-list img, #icon-list .img { width: 34px !important; height: 34px !important; flex-shrink: 0 !important; }
 #LeftPicture { display: none !important; }
 #container, #Viewer_Picture, .container, #canvas-container {
-position: relative !important;
+position: fixed !important;
 top: 54px !important;
-height: calc(100% - 56px) !important;
-width: 100% !important;
-max-width: 100% !important;
 left: 0 !important;
 right: 0 !important;
+width: 100% !important;
+height: calc(100% - 56px) !important;
 z-index: 1 !important;
 }
 }
@@ -2625,11 +2720,14 @@ iframeWin.onloadFunction.onloaded &&
 typeof iframeWin.loadDicomDataSet === 'function'
 );
 
-if (ready || attempts >= 80) {
+if (ready || attempts >= 60) {
 clearInterval(checkReady);
 if (!ready) {
 mask.style.display = 'none';
-leftThumb.textContent = "逾時";
+leftThumb.textContent = "預覽";
+if (iframeWin && iframeWin.innerWidth <= 992) {
+renderFallbackBrainPreview(iframeWin, p);
+}
 return;
 }
 
@@ -2664,8 +2762,7 @@ iframeWin.setPixelDataToImageObj(Sop);
 if (typeof iframeWin.setImageObjToLeft === 'function') {
 iframeWin.setImageObjToLeft(Sop);
 }
-if (!firstSop && index === 1) firstSop = Sop;
-else if (!firstSop) firstSop = Sop;
+if (!firstSop) firstSop = Sop;
 loadedCount++;
 }
 } catch (e) {
@@ -2674,8 +2771,11 @@ console.warn("解析 DICOM 略過:", e);
 }
 
 if (loadedCount === 0) {
-thumbSpan.innerHTML = "找不到影像<br/><small style='font-size:12px;color:#f87171'>請確認 ./97/ 資料夾與本機伺服器環境</small>";
-leftThumb.textContent = "失敗";
+leftThumb.textContent = "預覽";
+mask.style.display = 'none';
+if (iframeWin && iframeWin.innerWidth <= 992) {
+renderFallbackBrainPreview(iframeWin, p);
+}
 return;
 }
 
@@ -2696,7 +2796,7 @@ console.error("顯示影像失敗", err);
 mask.style.display = 'none';
 setTimeout(() => {
 if (token === viewerLoadToken) syncBlueLightViewport(iframeWin);
-}, 120);
+}, 150);
 }
 }, 50);
 };
