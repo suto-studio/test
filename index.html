@@ -44,10 +44,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .btn-outline { background: #fff; color: var(--color-text); border: 1px solid var(--color-border); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 500; }
 .btn-outline:hover:not(:disabled) { background: #f3f4f6; }
 button:disabled { opacity: 0.5; cursor: not-allowed; }
-input, select, textarea { font-family: inherit; outline: none; border: 1px solid var(--color-border); border-radius: 4px; padding: 8px 12px; font-size: 13px; color: var(--color-text); }
+input, select, textarea { font-family: inherit; outline: none; border: 1px solid var(--color-border); border-radius: 4px; padding: 8px 12px; font-size: 13px; color: var(--color-text); width: 100%; max-width: 100%; min-width: 0; }
 input:focus, select:focus, textarea:focus { border-color: var(--color-primary); }
 
-.star-btn { font-size: 18px; color: #d1d5db; cursor: pointer; transition: 0.2s; background: none; border: none; padding: 4px; line-height: 1; }
+.star-btn { font-size: 18px; color: #d1d5db; cursor: pointer; transition: 0.2s; background: none; border: none; padding: 4px; line-height: 1; width: auto; }
 .star-btn:hover { transform: scale(1.1); }
 .star-btn.active { color: var(--color-star); }
 
@@ -132,20 +132,26 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .data-table td { padding: 16px; border-bottom: 1px solid var(--color-border); font-size: 13px; vertical-align: middle; }
 .data-table tbody tr:hover { background: #f9fafb; cursor: pointer; }
 .data-table tbody tr:last-child td { border-bottom: none; }
-.td-name { font-size: 15px; font-weight: bold; color: var(--color-text); margin-bottom: 4px; display: block; white-space: nowrap; }
-.td-meta { font-size: 12px; color: var(--color-text-sub); display: block; margin-top: 4px; word-break: break-all; }
+.td-name { font-size: 15px; font-weight: bold; color: var(--color-text); margin-bottom: 4px; display: inline-block; white-space: nowrap; }
+.td-meta { font-size: 12px; color: var(--color-text-sub); display: block; margin-top: 4px; word-break: break-word; overflow-wrap: anywhere; }
+.status-pill { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 1px solid var(--color-border); background: #f3f4f6; color: var(--color-text-sub); vertical-align: middle; }
+.status-pill.processing { background: #fef9c3; border-color: #fde047; color: #a16207; }
+.status-pill.archived { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
 
 @media (max-width: 768px) {
 .content-container { padding: 20px 16px 32px; }
 .app-footer { padding: 14px 16px; }
-.data-table { min-width: 560px; }
-.data-table th, .data-table td { padding: 12px 12px; font-size: 12px; }
+.data-table { min-width: 500px; }
+.data-table th, .data-table td { padding: 12px 10px; font-size: 12px; }
 .td-name { font-size: 14px; }
-.td-meta { font-size: 11px; max-width: 165px; }
+.td-meta { font-size: 11px; max-width: 135px; }
 }
 
 .entity-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; width: 100%; }
-.entity-card { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: 0.2s; }
+@media (max-width: 768px) {
+.entity-cards-grid { grid-template-columns: 1fr; gap: 12px; }
+}
+.entity-card { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 12px; cursor: pointer; transition: 0.2s; width: 100%; min-width: 0; }
 .entity-card:hover { border-color: #9ca3af; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 .entity-card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
 .entity-card__title { font-size: 17px; font-weight: bold; color: var(--color-text); }
@@ -162,8 +168,9 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 
 .alert-yellow { background: var(--color-warn-bg); border: 1px solid var(--color-warn-border); color: var(--color-warn-text); padding: 10px 14px; border-radius: 6px; font-size: 12px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.6; }
 
+/* Main View */
 .main-layout { display: flex; gap: 40px; align-items: flex-start; width: 100%; min-width: 0; }
-.main-sidebar { width: 200px; flex-shrink: 0; }
+.main-sidebar { width: 210px; flex-shrink: 0; }
 .main-sidebar h2 { font-size: 20px; margin-bottom: 24px; }
 .sidebar-menu { display: flex; flex-direction: column; gap: 8px; }
 .sidebar-menu button { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 14px; color: var(--color-text-sub); border: 1px solid var(--color-border); background: var(--color-panel); transition: 0.2s; }
@@ -187,8 +194,8 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .main-layout { flex-direction: column; gap: 20px; }
 .main-sidebar { width: 100%; display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
 .main-sidebar h2 { margin-bottom: 0; font-size: 18px; }
-.sidebar-menu { flex-direction: row; flex-wrap: wrap; width: 100%; gap: 8px; }
-.sidebar-menu button { flex: 1 1 auto; padding: 8px 10px; font-size: 13px; justify-content: center; gap: 6px; white-space: nowrap; }
+.sidebar-menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; gap: 8px; }
+.sidebar-menu button { padding: 9px 12px; font-size: 13px; justify-content: space-between; gap: 6px; white-space: nowrap; }
 
 .patient-hero-card { flex-direction: column; align-items: stretch; padding: 16px; gap: 12px; margin-bottom: 24px; }
 .hero-col-patient { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
@@ -197,7 +204,8 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .hero-col-track { margin-left: 0; flex-shrink: 0; }
 }
 
-.request-section { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+/* Packet Requests View */
+.request-section { background: var(--color-panel); border: 1px solid var(--color-border); border-radius: 8px; padding: 24px; margin-bottom: 24px; width: 100%; max-width: 100%; min-width: 0; }
 .request-section h2 { font-size: 16px; margin-bottom: 8px; font-weight: bold; }
 .request-count { font-size: 12px; color: var(--color-text-sub); margin-bottom: 24px; }
 .packet-progress-wrap { overflow-x: auto; padding: 20px 0; margin-top: 20px; border-top: 1px solid var(--color-border); }
@@ -211,31 +219,53 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .packet-progress-step__label { margin-top: 8px; font-size: 11px; color: var(--color-text-sub); text-align: center; width: 60px;}
 .packet-progress-step.current .packet-progress-step__label { color: var(--color-text); font-weight: bold; }
 
-.request-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-.request-card { border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; background: var(--color-panel); display: flex; flex-direction: column; cursor: pointer; transition: 0.2s;}
+.request-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; width: 100%; }
+@media (max-width: 768px) {
+.request-section { padding: 16px; }
+.request-cards { grid-template-columns: 1fr; gap: 12px; }
+}
+.request-card { border: 1px solid var(--color-border); border-radius: 8px; padding: 16px; background: var(--color-panel); display: flex; flex-direction: column; cursor: pointer; transition: 0.2s; width: 100%; min-width: 0; }
 .request-card:hover { border-color: #9ca3af; }
 .request-card h3 { font-size: 16px; margin-bottom: 6px; }
 .request-card p { font-size: 12px; color: var(--color-text-sub); word-break: break-all; margin-bottom: 4px; }
 .request-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; border: 1px solid var(--color-border); align-self: flex-start; margin-bottom: 12px; background: #ecfdf5; color: #10b981; border-color: #a7f3d0; }
 
-.query-search-panel { display: flex; gap: 0; margin-bottom: 24px; border: 1px solid var(--color-border); border-radius: 4px; overflow: hidden; background: #fff; }
-.query-search-panel select, .query-search-panel input { border: none; border-radius: 0; padding: 10px 14px; }
-.query-search-panel select { border-right: 1px solid var(--color-border); width: 140px; background: #f9fafb; }
+/* Query View & Category Filter Card */
+.query-search-panel { display: flex; gap: 0; margin-bottom: 20px; border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; background: #fff; width: 100%; max-width: 100%; }
+.query-search-panel select, .query-search-panel input { border: none; border-radius: 0; padding: 11px 14px; }
+.query-search-panel select { border-right: 1px solid var(--color-border); width: 140px; flex-shrink: 0; background: #f9fafb; }
 .query-search-panel input { flex: 1; min-width: 0; }
-.query-search-panel button { padding: 0 24px; border-left: 1px solid var(--color-border); background: #f9fafb; font-weight: bold; font-size: 13px; white-space: nowrap; }
-.query-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 12px; color: var(--color-text-sub); flex-wrap: wrap; gap: 8px; }
+.query-search-panel .query-search-btns { display: flex; flex-shrink: 0; }
+.query-search-panel button { padding: 10px 18px; border-left: 1px solid var(--color-border); background: #f9fafb; font-weight: bold; font-size: 13px; white-space: nowrap; width: auto; }
+.query-search-panel button.query-clear-btn { background: #fff; color: var(--color-text-sub); font-weight: 500; }
+
+.query-toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 12px; color: var(--color-text-sub); flex-wrap: wrap; gap: 10px; width: 100%; }
+.query-toolbar__right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .view-toggles { display: flex; border: 1px solid var(--color-text); border-radius: 4px; overflow: hidden; }
-.view-toggles button { padding: 5px 12px; font-size: 12px; font-weight: bold; background: #fff; color: var(--color-text); border-radius:0; border:none; border-right:1px solid var(--color-border);}
-.view-toggles button:last-child { border:none; }
+.view-toggles button { padding: 6px 12px; font-size: 12px; font-weight: bold; background: #fff; color: var(--color-text); border-radius: 0; border: none; border-right: 1px solid var(--color-border); white-space: nowrap; width: auto; }
+.view-toggles button:last-child { border: none; }
 .view-toggles button.active { background: var(--color-text); color: #fff; }
 
-.category-filters { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-.category-filters label { font-size: 12px; color: var(--color-text-sub); display: flex; flex-direction: column; gap: 6px; }
+.category-filter-card { background: #fff; border: 1px solid var(--color-border); border-radius: 8px; padding: 20px; margin-bottom: 24px; width: 100%; max-width: 100%; min-width: 0; }
+.category-filters { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.category-filters label { font-size: 12px; color: var(--color-text-sub); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.category-filter-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; gap: 12px; flex-wrap: wrap; }
+.category-filter-actions { display: flex; gap: 12px; }
+
 @media (max-width: 768px) {
-.category-filters { grid-template-columns: 1fr 1fr; }
-.query-search-panel { flex-wrap: wrap; }
+.category-filter-card { padding: 14px; }
+.category-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.category-filters input, .category-filters select { padding: 8px 10px; font-size: 12px; }
+.category-filter-actions { width: 100%; justify-content: flex-end; }
+.category-filter-actions button { flex: 1; }
+
+.query-search-panel { flex-direction: column; border-radius: 8px; }
 .query-search-panel select { width: 100%; border-right: none; border-bottom: 1px solid var(--color-border); }
-.query-search-panel button { padding: 10px 16px; }
+.query-search-panel input { width: 100%; border-bottom: 1px solid var(--color-border); }
+.query-search-panel .query-search-btns { width: 100%; display: flex; }
+.query-search-panel button { flex: 1; padding: 10px 12px; }
+.query-search-panel button:first-child { border-left: none; }
+.query-toolbar__right { width: 100%; justify-content: space-between; }
 }
 
 .modal-backdrop { position: fixed; inset: 0; z-index: 2000; display: none; place-items: center; background: rgba(0, 0, 0, 0.5); }
@@ -248,15 +278,16 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
 .skill-btn { padding: 12px; border: 1px solid var(--color-border); border-radius: 4px; background: #f9fafb; text-align: left; display: flex; align-items: flex-start; gap: 8px; font-size: 13px; cursor: pointer; transition: 0.2s;}
 .skill-btn:hover { border-color: #9ca3af; }
-.skill-btn input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; }
+.skill-btn input[type="checkbox"] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; }
 .skill-btn.full-width { grid-column: 1 / -1; background: #f3f4f6; }
 @media (max-width: 768px) {
-.modal-body { flex-direction: column; }
+.modal-body { flex-direction: column; padding: 16px; gap: 16px; }
 .skill-grid { grid-template-columns: 1fr; }
 }
 
 .confirm-dialog { width: 400px; max-width: 90vw; background: #fff; border-radius: 8px; padding: 24px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
+/* Summary View */
 .summary-header-wide { display: flex; justify-content: space-between; align-items: flex-end; padding: 16px 4vw; border-bottom: 1px solid var(--color-border); background: var(--color-panel); flex-shrink: 0; }
 .summary-title-area h1 { font-size: 24px; font-weight: bold; margin: 0 0 8px; }
 .summary-meta-info { font-size: 13px; color: var(--color-text-sub); word-break: break-all; }
@@ -297,7 +328,13 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .domain-detail-panel { border: 1px solid var(--color-border); border-radius: 8px; background: #fff; padding: 24px; margin-bottom: 24px; display: none; word-break: break-word; overflow-wrap: anywhere; }
 .detail-ai-box { font-size: 13px; line-height: 1.8; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--color-border); color: #1f2937; }
 .detail-ai-box h3 { font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-.thought-block { font-family: monospace; color: var(--color-text-sub); margin-bottom: 12px; white-space: pre-wrap; font-size: 12px; word-break: break-word; }
+
+.thought-collapsible { margin-bottom: 14px; border: 1px solid var(--color-line); border-radius: 6px; background: #f9fafb; overflow: hidden; }
+.thought-toggle-btn { width: 100%; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 600; color: var(--color-text-sub); background: #f3f4f6; text-align: left; }
+.thought-toggle-btn:hover { background: #e5e7eb; color: var(--color-text); }
+.thought-block { display: none; font-family: monospace; color: var(--color-text-sub); padding: 12px; white-space: pre-wrap; font-size: 12px; word-break: break-word; border-top: 1px solid var(--color-line); background: #fafafa; }
+.thought-collapsible.open .thought-block { display: block; }
+
 .domain-details-grid { display: flex; border-top: 1px solid var(--color-border); padding-top: 24px; }
 .record-list-col { width: 280px; border-right: 1px solid var(--color-border); padding-right: 16px; flex-shrink: 0; }
 .record-search { margin-bottom: 12px; display: flex; flex-direction: column; gap: 8px;}
@@ -386,13 +423,14 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .support-grid { grid-template-columns: 1fr; }
 }
 
+/* QnA View */
 .qna-header-top { background: #fff; border-bottom: 1px solid var(--color-border); padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 56px; flex-shrink: 0; gap: 10px; }
 .qna-header-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .qna-header-title { font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
 .qna-header-sub { font-size: 11px; color: #888; font-weight: normal; margin-left: 8px; }
-.qna-mode-pill { border-radius: 20px; font-size: 12px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
+.qna-mode-pill { border-radius: 20px; font-size: 12px; padding: 5px 12px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; width: auto; }
 
-.qna-layout { display: grid; grid-template-columns: 260px 1fr 280px; height: calc(100vh - 56px); background: #f9fafb; position: relative; }
+.qna-layout { display: grid; grid-template-columns: 280px 1fr 280px; height: calc(100vh - 56px); background: #f9fafb; position: relative; }
 
 .qna-lib-sidebar { background: #f9fafb; border-right: 1px solid var(--color-border); padding: 20px; display: flex; flex-direction: column; overflow-y: auto; }
 .qna-lib-title { font-size: 11px; font-weight: bold; color: var(--color-text-sub); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
@@ -400,16 +438,22 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .qna-lib-btn { background: #1f2937; color: #fff; border-radius: 4px; padding: 8px 12px; text-align: center; font-size: 13px; margin-bottom: 24px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; border:none;}
 .qna-lib-btn:hover { background: #111; }
 .qna-lib-section { font-size: 12px; color: var(--color-text-sub); margin-bottom: 8px; display: flex; justify-content: space-between;}
-.qna-lib-actions { display: flex; gap: 8px; margin-bottom: 16px; }
+.qna-lib-actions { display: flex; gap: 8px; margin-bottom: 12px; }
 .qna-lib-actions button { flex: 1; padding: 6px; background: #e5e7eb; border-radius: 4px; font-size: 12px; border:none;}
 .qna-lib-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 13px; border-bottom: 1px solid var(--color-line); }
+.qna-doc-row { display: flex; align-items: center; gap: 10px; padding: 10px 4px; border-bottom: 1px solid var(--color-line); font-size: 12px; }
+.qna-doc-row:last-child { border-bottom: none; }
+.qna-doc-icon { width: 32px; height: 32px; border-radius: 6px; background: #f3f4f6; display: grid; place-items: center; flex-shrink: 0; color: var(--color-text-sub); font-size: 14px; }
+.qna-doc-info { min-width: 0; flex: 1; }
+.qna-doc-name { font-weight: 600; color: var(--color-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qna-doc-sub { font-size: 11px; color: var(--color-text-sub); margin-top: 2px; }
 
 .qna-main-area { display: flex; flex-direction: column; background: #fff; position: relative; min-width: 0; height: 100%; }
 .qna-main-header { padding: 20px 40px; border-bottom: 1px solid var(--color-border); }
 .qna-main-title { font-size: 11px; font-weight: bold; color: var(--color-text-sub); letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase;}
 .qna-main-h2 { font-size: 20px; font-weight: bold; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 8px;}
 .qna-tabs { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
-.qna-tab { padding: 6px 12px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 13px; cursor: pointer; background: #fff; display: flex; align-items: center; gap: 6px;}
+.qna-tab { padding: 6px 12px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 13px; cursor: pointer; background: #fff; display: flex; align-items: center; gap: 6px; width: auto; }
 .qna-tab.active { background: #f3f4f6; font-weight: bold; }
 
 .qna-mobile-toggles { display: none; gap: 8px; margin-bottom: 12px; }
@@ -430,7 +474,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .qna-input-wrapper { padding: 20px 40px; background: #fff; border-top: 1px solid var(--color-border); width: 100%; }
 .qna-input-inner { display: flex; border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; background: #f9fafb; margin-bottom: 8px;}
 .qna-input-inner input { flex: 1; border: none; padding: 12px 16px; background: transparent; font-size: 14px; min-width: 0; }
-.qna-input-inner button { background: #9ca3af; color: #fff; padding: 0 20px; font-weight: bold; display: flex; align-items: center; gap: 8px; border:none; cursor: pointer; white-space: nowrap; }
+.qna-input-inner button { background: #9ca3af; color: #fff; padding: 0 20px; font-weight: bold; display: flex; align-items: center; gap: 8px; border:none; cursor: pointer; white-space: nowrap; width: auto; }
 .qna-disclaimer { display: flex; justify-content: space-between; font-size: 11px; color: #888; flex-wrap: wrap; gap: 8px; }
 
 .qna-right-sidebar { background: #f9fafb; border-left: 1px solid var(--color-border); display: flex; flex-direction: column; overflow-y: auto; }
@@ -506,8 +550,8 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 .viewer-thumb-box { width: 52px; height: 40px; font-size: 11px; line-height: 1.2; }
 .viewer-thumb-meta { text-align: left; }
 
-.viewer-main { flex: 0 0 auto; width: 100%; max-width: 100%; height: 84vh; min-height: 680px; overflow: hidden; }
-.bluelight-frame { width: 100%; max-width: 100%; height: 100%; min-height: 680px; }
+.viewer-main { flex: 0 0 auto; width: 100%; max-width: 100%; height: 82vh; min-height: 620px; overflow: hidden; }
+.bluelight-frame { width: 100%; max-width: 100%; height: 100%; min-height: 620px; }
 
 .viewer-sidebar-right { width: 100%; border-left: none; border-top: 1px solid #262626; overflow-y: visible; }
 }
@@ -564,6 +608,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div class="sidebar-menu">
 <button class="active" onclick="setMainFilter('全部', this)">全部 <span id="count-all">1</span></button>
 <button onclick="setMainFilter('未完成', this)">未完成 <span id="count-pending">1</span></button>
+<button onclick="setMainFilter('處理中', this)">處理中 <span id="count-processing">0</span></button>
 <button onclick="setMainFilter('已歸檔', this)">已歸檔 <span id="count-done">0</span></button>
 </div>
 </aside>
@@ -571,9 +616,9 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div class="main-section-header">
 <h3 class="main-section-title">最新病患 <small>依資料建立時間</small></h3>
 <div style="display:flex; gap:8px; align-items:center;">
-<button class="btn-outline" style="padding:4px 10px;" onclick="prevPatient()">←</button>
+<button class="btn-outline" style="padding:4px 10px; width:auto;" onclick="prevPatient()">←</button>
 <span style="font-size:12px; color:var(--color-text-sub); line-height:28px;" id="hero-pagination">1 / 1</span>
-<button class="btn-outline" style="padding:4px 10px;" onclick="nextPatient()">→</button>
+<button class="btn-outline" style="padding:4px 10px; width:auto;" onclick="nextPatient()">→</button>
 </div>
 </div>
 <div class="patient-hero-card" id="hero-card" onclick="navigate('summary', 0)">
@@ -597,9 +642,13 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 </div>
 
 <div class="main-section-header">
-<h3 class="main-section-title">處理中個案 <small id="main-list-count">1 位病患</small></h3>
+<h3 class="main-section-title"><span id="main-list-heading">全部個案</span> <small id="main-list-count">1 位病患</small></h3>
+<div class="view-toggles" data-page="main">
+<button type="button" class="active" data-mode="list" onclick="setViewMode('main', 'list', this)">條列式</button>
+<button type="button" data-mode="card" onclick="setViewMode('main', 'card', this)">卡片式</button>
 </div>
-<div class="table-scroll">
+</div>
+<div class="table-scroll" id="main-table-wrap">
 <table class="data-table">
 <thead>
 <tr><th>病患</th><th>最後就診類型</th><th>就診機構 / 科別</th><th>日期</th><th></th></tr>
@@ -607,6 +656,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <tbody id="main-table-body"></tbody>
 </table>
 </div>
+<div class="entity-cards-grid" id="main-cards-container" style="display:none;"></div>
 </main>
 </div>
 </div>
@@ -672,13 +722,15 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div class="query-search-panel">
 <select><option>病患姓名</option></select>
 <input type="text" placeholder="輸入病患姓名或 Patient ID" id="query-search-input" oninput="renderQueryList()" />
-<button onclick="renderQueryList()">搜尋</button>
-<button style="border-left:none; background:#fff;" onclick="document.getElementById('query-search-input').value=''; renderQueryList();">清除</button>
+<div class="query-search-btns">
+<button type="button" onclick="renderQueryList()">搜尋</button>
+<button type="button" class="query-clear-btn" onclick="document.getElementById('query-search-input').value=''; renderQueryList();">清除</button>
+</div>
 </div>
 <div class="query-toolbar">
 <div>第 1 頁</div>
-<div style="display:flex; align-items:center; gap:12px;">
-<span>每頁 <select style="padding:2px 8px;"><option>20</option></select> 筆</span>
+<div class="query-toolbar__right">
+<span>每頁 <select style="padding:2px 8px; width:auto;"><option>20</option></select> 筆</span>
 <div class="view-toggles" data-page="query">
 <button type="button" class="active" data-mode="list" onclick="setViewMode('query', 'list', this)">條列式</button>
 <button type="button" data-mode="card" onclick="setViewMode('query', 'card', this)">卡片式</button>
@@ -703,21 +755,16 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <h2 id="modal-name" style="font-size:20px; margin-bottom:8px;">王小明</h2>
 <div style="font-size:12px; color:var(--color-text-sub); word-break:break-all;" id="modal-meta">身分識別 : 999-68-4494 | 性別 : 女 | 年齡 : 27 歲 | 出生日期 : 1999-07-02 | Patient ID : 279ca2a4-c2d9-4045-83de-f604ed069fe8</div>
 </div>
-<button style="font-size:24px; color:#aaa; line-height:1;" onclick="closePacketModal()">×</button>
+<button style="font-size:24px; color:#aaa; line-height:1; width:auto;" onclick="closePacketModal()">×</button>
 </div>
 <div class="modal-body">
 <div class="modal-col-left">
 <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
 <strong style="font-size:16px;">查看</strong>
-<button class="btn-outline" style="padding:4px 8px; font-size:12px;">重新整理</button>
+<button class="btn-outline" style="padding:4px 8px; font-size:12px; width:auto;" onclick="renderModalHistoryPacket()">重新整理</button>
 </div>
 <div style="font-size:12px; color:var(--color-text-sub); margin-bottom:12px;">歷史臨床資料包</div>
-<div class="request-card" onclick="closePacketModal(); navigate('summary', 0);">
-<span class="request-badge done">已完成</span>
-<h3>王小明</h3>
-<p>2018/02/13 腎盂腎炎與全病史脈絡包</p>
-<p style="color:var(--color-primary); font-weight:bold; margin-top:12px;">立即開啟資料包 →</p>
-</div>
+<div id="modal-history-slot"></div>
 </div>
 <div class="modal-col-right">
 <strong style="font-size:16px; display:block; margin-bottom:4px;">建立</strong>
@@ -725,14 +772,14 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <strong style="font-size:13px; display:block;">希望取得哪些資料？</strong>
 <div class="skill-grid">
 <label class="skill-btn full-width">
-<input type="checkbox" id="modal-check-all" checked onchange="toggleAllSkills(this.checked)">
+<input type="checkbox" id="modal-check-all" checked onchange="toggleAllSkills(this.checked)" style="width:16px;">
 <div><strong style="display:block;">全部臨床資料</strong><span style="font-size:11px; color:var(--color-text-sub);">執行目前所有 Clinical Skills</span></div>
 </label>
-<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="診斷" disabled> 診斷 Diagnosis</label>
-<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="用藥" disabled> 用藥 Medication</label>
-<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="治療" disabled> 治療 Treatment</label>
-<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="影像" disabled> 歷史影像 Prior Imaging</label>
-<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="檢驗" disabled> 檢驗 Observation</label>
+<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="診斷" disabled style="width:16px;"> 診斷 Diagnosis</label>
+<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="用藥" disabled style="width:16px;"> 用藥 Medication</label>
+<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="治療" disabled style="width:16px;"> 治療 Treatment</label>
+<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="影像" disabled style="width:16px;"> 歷史影像 Prior Imaging</label>
+<label class="skill-btn"><input type="checkbox" class="modal-skill-cb" value="檢驗" disabled style="width:16px;"> 檢驗 Observation</label>
 </div>
 <strong style="font-size:13px; display:block; margin-top:20px; margin-bottom:4px;">補充查詢需求</strong>
 <div style="font-size:12px; color:var(--color-text-sub); margin-bottom:8px;">可單獨輸入，也可以和上方 Skill 一起使用。</div>
@@ -748,13 +795,13 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div class="modal-backdrop" id="confirm-modal">
 <div class="confirm-dialog">
 <h3 style="font-size:18px; margin-bottom:12px;">資料包建立請求已送出</h3>
-<p style="font-size:13px; color:var(--color-text-sub); margin-bottom:24px;">系統正在處理王小明的資料包，完成後會在畫面左下角通知您。接下來想做什麼？</p>
+<p style="font-size:13px; color:var(--color-text-sub); margin-bottom:24px;" id="confirm-modal-desc">系統正在處理王小明的資料包，完成後會在畫面左下角通知您。接下來想做什麼？</p>
 <div style="display:flex; gap:12px; margin-bottom:16px;">
 <button class="btn-outline" style="flex:1;" onclick="closeConfirmModal()">繼續查詢病患</button>
 <button class="btn-primary" style="flex:1;" onclick="goToPacketRequests()">檢視資料包進度</button>
 </div>
 <label style="font-size:12px; color:var(--color-text-sub); display:flex; align-items:center; justify-content:center; gap:8px;">
-<input type="checkbox"> 以後不再提示 (可從設定重新開啟)
+<input type="checkbox" style="width:auto;"> 以後不再提示 (可從設定重新開啟)
 </label>
 </div>
 </div>
@@ -768,7 +815,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div class="content-container">
 <h1 class="section-title">影像分類庫</h1>
 <p class="section-subtitle">瀏覽、搜尋 Raccoon PACS 中的 Study。</p>
-<div style="background:#fff; border:1px solid var(--color-border); border-radius:8px; padding:20px; margin-bottom:24px;">
+<div class="category-filter-card">
 <div class="category-filters">
 <label>病患姓名 <input type="text" placeholder="Patient Name" value="王小明"></label>
 <label>Patient ID <input type="text" placeholder="Patient ID"></label>
@@ -776,18 +823,18 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <label>起始日期 <input type="text" placeholder="年 / 月 / 日"></label>
 <label>結束日期 <input type="text" placeholder="年 / 月 / 日"></label>
 </div>
-<div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px;">
+<div class="category-filter-footer">
 <div style="font-size:13px; font-weight:bold; cursor:pointer;">進階搜尋 ▾</div>
-<div style="display:flex; gap:12px;">
-<button class="btn-outline" style="background:#f9fafb;" onclick="renderCategory()">清除</button>
-<button class="btn-outline" style="background:#e5e7eb;" onclick="renderCategory()">搜尋</button>
+<div class="category-filter-actions">
+<button type="button" class="btn-outline" style="background:#f9fafb;" onclick="renderCategory()">清除</button>
+<button type="button" class="btn-outline" style="background:#e5e7eb;" onclick="renderCategory()">搜尋</button>
 </div>
 </div>
 </div>
 <div class="query-toolbar">
 <div>本頁 1 筆 Study</div>
-<div style="display:flex; align-items:center; gap:12px;">
-<span>每頁 <select style="padding:2px 8px;"><option>20</option></select> 筆</span>
+<div class="query-toolbar__right">
+<span>每頁 <select style="padding:2px 8px; width:auto;"><option>20</option></select> 筆</span>
 <div class="view-toggles" data-page="category">
 <button type="button" class="active" data-mode="list" onclick="setViewMode('category', 'list', this)">條列式</button>
 <button type="button" data-mode="card" onclick="setViewMode('category', 'card', this)">卡片式</button>
@@ -838,7 +885,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div id="view-summary" class="page-view">
 <header class="summary-header-wide">
 <div style="display:flex; flex-direction:column; align-items:flex-start;">
-<button class="btn-outline" style="border:none; padding:4px 8px; margin-bottom:12px; background:transparent;" onclick="navigate('main')">← 返回清單</button>
+<button class="btn-outline" style="border:none; padding:4px 8px; margin-bottom:12px; background:transparent; width:auto;" onclick="navigate('main')">← 返回清單</button>
 <div class="summary-title-area">
 <h1 id="summary-name">王小明</h1>
 <div class="summary-meta-info" id="summary-meta">
@@ -858,9 +905,7 @@ text-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 50px rgba(0,0,0,0.1); opacity: 0; z-i
 <div style="min-width: 0;">
 <div class="ai-summary-box" id="global-ai-summary">
 <div style="font-size:16px; font-weight:bold; margin-bottom:16px;">AI 病患摘要</div>
-<div id="packet-summary-text" style="text-align:justify;">
-一名 27 歲女性病患（王小明，出生日期 1999-07-02，Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8），最近於 2018-02-13 因腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至 THE GENERAL HOSPITAL CORPORATION 症狀門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，並因頭痛評估接受腦部核磁共振掃描（Brain MRI，共 28 張切片）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]（目前尚無獨立之放射科判讀報告）。當日尿液檢查顯示亞硝酸鹽陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]、白血球酯酶 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]、尿潛血 + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]、顯微鏡白血球 26.644 /HPF [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]，且尿液細菌培養檢出大腸桿菌（Escherichia coli）&gt; 100,000 CFU/mL [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]；已接受抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2] 並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（每日兩次，每次一錠）[MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]，該病況紀錄已於 2018-02-14 緩解。既往病史包含 2017-09-08 因牙齦炎與牙齦疾病接受牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2017-08-25 體檢紀錄血壓 114/66 mmHg、心率 100 次/分、BMI 33.12 kg/m²（身高 178.2 cm、體重 105.1 kg）、從未吸菸，且於 2017 年曾有壓力與親密伴侶暴力篩檢紀錄（均已緩解）；2016-09-26 曾因腳踝扭傷至急診就醫，開立 Ibuprofen 200 mg 需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f] 並完成物理治療照護計畫 [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]。目前仍持續進行自 2006 年起之體重管理計畫 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]，無已知過敏史。
-</div>
+<div id="packet-summary-text" style="text-align:justify;"></div>
 <div class="alert-yellow" style="margin-top:20px;">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:2px; flex-shrink:0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
 AI分析結果僅供臨床判斷參考，非最終確定診斷。
@@ -902,7 +947,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <select style="width:120px;"><option>不限制</option></select>
 <div style="font-size:12px; color:var(--color-text-sub);">搜尋事件</div>
 <input type="text" id="timeline-search-input" placeholder="輸入事件名稱、類型或來源編號" style="flex:1; min-width: 180px;" oninput="renderTimeline()">
-<button class="btn-outline" onclick="document.getElementById('timeline-search-input').value=''; renderTimeline();">清除條件</button>
+<button class="btn-outline" style="width:auto;" onclick="document.getElementById('timeline-search-input').value=''; renderTimeline();">清除條件</button>
 </div>
 <div class="timeline-filter-tags">
 <div class="timeline-tag t-diag active" data-filter="diagnosis" onclick="toggleTimelineFilter('diagnosis', this)">
@@ -986,7 +1031,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 </div>
 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
 <span style="font-size:13px; font-weight:bold;">客製化需求</span>
-<button class="btn-outline" style="padding:4px 12px; font-size:12px;" onclick="simulateReportGen()">產生報告</button>
+<button class="btn-outline" style="padding:4px 12px; font-size:12px; width:auto;" onclick="simulateReportGen()">產生報告</button>
 </div>
 <div class="report-tags">
 <button class="report-tag" onclick="document.getElementById('report-input').value+='+ 繁體中文 '">+ 繁體中文</button>
@@ -998,14 +1043,10 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <textarea class="report-textarea" id="report-input" style="height:60px;" placeholder="例如：請以繁體中文整理報告"></textarea>
 <div style="font-size:12px; color:var(--color-text-sub); margin-bottom:8px;">依目前資料包與客製化需求產生報告，成功後取代下方內容。</div>
 <div style="font-size:13px; font-weight:bold; margin-bottom:8px;">報告內容</div>
-<textarea class="report-textarea" id="report-content" style="height:350px;">病患王小明（27 歲女性，Patient ID: 279ca2a4-c2d9-4045-83de-f604ed069fe8）於 2018-02-13 因腎盂腎炎 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，同日並因頭痛評估接受腦部核磁共振掃描 (Brain MRI，共 28 張切片，ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880)，目前尚無獨立放射科判讀報告。
-
-尿液檢驗顯示亞硝酸鹽陽性、白血球酯酶 1+、尿潛血 +，尿沉渣白血球 26.644 /HPF，且尿液培養檢出 Escherichia coli &gt; 100,000 CFU/mL (Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7)。當次已給予抗生素治療並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，每日兩次、每次一錠 (MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b)。
-
-既往病史包括 2017-09-08 牙齦炎與牙齦疾病（牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療），以及 2016-09-26 腳踝扭傷急診紀錄。目前持續執行體重管理計畫，無已知過敏史。</textarea>
+<textarea class="report-textarea" id="report-content" style="height:350px;"></textarea>
 <div class="report-actions">
-<button style="background:#888; color:#fff; border:none;" onclick="alert('報告已儲存')">儲存報告</button>
-<button onclick="alert('暫存成功')">暫存</button>
+<button style="background:#888; color:#fff; border:none;" onclick="savePatientReport(currentPatientId)">儲存報告</button>
+<button onclick="draftPatientReport(currentPatientId)">暫存</button>
 <button onclick="alert('已複製到剪貼簿')">複製報告</button>
 </div>
 </div>
@@ -1017,7 +1058,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <div id="view-qna" class="page-view">
 <header class="qna-header-top">
 <div class="qna-header-left">
-<button type="button" class="btn-outline" style="padding:4px 8px; font-size:16px; border:none; background:#f9fafb; flex-shrink:0;" onclick="navigate('summary')">←</button>
+<button type="button" class="btn-outline" style="padding:4px 8px; font-size:16px; border:none; background:#f9fafb; flex-shrink:0; width:auto;" onclick="navigate('summary')">←</button>
 <div class="qna-header-title">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
 <span>限定問答</span>
@@ -1041,21 +1082,50 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 </div>
 </div>
 <button type="button" class="qna-lib-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> 新增來源</button>
-<div class="qna-lib-section"><span>檢索來源</span><span>已勾選 0/0 份</span></div>
+<div class="qna-lib-section"><span>檢索來源</span><span id="qna-selected-counter">已勾選 3/3 份</span></div>
 <div class="qna-lib-actions">
-<button type="button">全選</button><button type="button">全部取消</button>
+<button type="button" onclick="setAllSampleDocs(true)">全選</button>
+<button type="button" onclick="setAllSampleDocs(false)">全部取消</button>
 </div>
-<div class="qna-lib-item"><label style="display:flex; align-items:center;"><input type="checkbox" style="margin-right:8px;">共用知識庫</label><span>0/0</span></div>
-<div class="qna-lib-item" style="border-bottom:none;"><label style="display:flex; align-items:center;"><input type="checkbox" style="margin-right:8px;">我的知識庫</label><span>0/0</span></div>
-<div class="qna-lib-section" style="margin-top:24px;"><span>共用/個人資料夾</span><span style="cursor:pointer;">批次勾選文件</span></div>
-<div style="font-size:13px; color:#888; margin-bottom:16px;">尚未建立資料夾</div>
-<div class="qna-lib-info" style="font-size:11px; color:#888; background:#fff; padding:12px; border:1px solid var(--color-border); border-radius:4px; margin-bottom:24px;">
+<div class="qna-lib-item"><label style="display:flex; align-items:center;"><input type="checkbox" style="margin-right:8px; width:auto;">共用知識庫</label><span>0/0</span></div>
+<div class="qna-lib-item" style="border-bottom:none;"><label style="display:flex; align-items:center;"><input type="checkbox" id="qna-group-mine" checked onchange="setAllSampleDocs(this.checked)" style="margin-right:8px; width:auto;">我的知識庫</label><span id="qna-mine-ratio">3/3</span></div>
+<div class="qna-lib-section" style="margin-top:20px;"><span>共用/個人資料夾</span><span style="cursor:pointer;">批次勾選文件</span></div>
+<div style="font-size:12px; color:var(--color-text); margin-bottom:6px; display:flex; justify-content:space-between;"><span>☑ 支付標準相關問答輯</span><span>1/1</span></div>
+<div style="font-size:12px; color:var(--color-text); margin-bottom:14px; display:flex; justify-content:space-between;"><span>☑ 最新版藥品給付規定內容</span><span>2/2</span></div>
+<div class="qna-lib-info" style="font-size:11px; color:#888; background:#fff; padding:10px 12px; border:1px solid var(--color-border); border-radius:4px; margin-bottom:18px;">
 ⓘ 只有勾選的文件會進入本次 RAG 檢索；取消勾選不會刪除文件。
 </div>
-<div class="qna-lib-section"><span>所有文件</span><span>0 份</span></div>
-<input type="text" placeholder="搜尋文件名稱" style="width:100%; margin-bottom:12px; background:#fff;">
-<div style="font-size:13px; color:#888;">尚無文件，請新增來源</div>
-<div style="margin-top:auto; font-size:11px; color:#888;">● 依帳號權限顯示可用文件</div>
+<div class="qna-lib-section"><span>所有文件</span><span>3 份</span></div>
+<input type="text" id="qna-doc-search" placeholder="搜尋文件名稱" oninput="filterSampleDocs(this.value)" style="width:100%; margin-bottom:8px; background:#fff;">
+
+<div id="qna-doc-list">
+<div class="qna-doc-row" data-doc-name="符合重大外傷急診病人處...">
+<input type="checkbox" class="qna-sample-doc-cb" value="符合重大外傷急診病人處..." checked onchange="syncSampleDocsState()" style="width:auto; flex-shrink:0;">
+<div class="qna-doc-icon">📄</div>
+<div class="qna-doc-info">
+<div class="qna-doc-name">符合重大外傷急診病人處...</div>
+<div class="qna-doc-sub">個人文件</div>
+</div>
+</div>
+<div class="qna-doc-row" data-doc-name="第十一節 解毒劑.docx">
+<input type="checkbox" class="qna-sample-doc-cb" value="第十一節 解毒劑.docx" checked onchange="syncSampleDocsState()" style="width:auto; flex-shrink:0;">
+<div class="qna-doc-icon">📄</div>
+<div class="qna-doc-info">
+<div class="qna-doc-name">第十一節 解毒劑.docx</div>
+<div class="qna-doc-sub">個人文件</div>
+</div>
+</div>
+<div class="qna-doc-row" data-doc-name="第六節 呼吸道藥物.pdf">
+<input type="checkbox" class="qna-sample-doc-cb" value="第六節 呼吸道藥物.pdf" checked onchange="syncSampleDocsState()" style="width:auto; flex-shrink:0;">
+<div class="qna-doc-icon">📄</div>
+<div class="qna-doc-info">
+<div class="qna-doc-name">第六節 呼吸道藥物.pdf</div>
+<div class="qna-doc-sub">個人文件</div>
+</div>
+</div>
+</div>
+
+<div style="margin-top:auto; font-size:11px; color:#888; padding-top:12px;">● 依帳號權限顯示可用文件</div>
 </aside>
 
 <main class="qna-main-area">
@@ -1063,7 +1133,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <div class="qna-main-title">ASK YOUR SOURCES</div>
 <div class="qna-main-h2">
 <span>限定問答</span>
-<button type="button" class="btn-outline" style="font-size:12px; padding:4px 12px; color:#888;" onclick="resetQnAChat()">清空對話</button>
+<button type="button" class="btn-outline" style="font-size:12px; padding:4px 12px; color:#888; width:auto;" onclick="resetQnAChat()">清空對話</button>
 </div>
 
 <div class="qna-mobile-toggles">
@@ -1087,7 +1157,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 臨床資料包問答
 </button>
 </div>
-<div style="font-size:12px; color:#888;" id="qna-tab-hint">ⓘ 已選 0 份文件 • 不帶入病人 CCP</div>
+<div style="font-size:12px; color:#888;" id="qna-tab-hint">ⓘ 已選 3 份文件 • 不帶入病人 CCP</div>
 </div>
 <div class="qna-chat-content" id="qna-chat-log">
 <div class="qna-welcome-center" id="qna-welcome-screen">
@@ -1118,7 +1188,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 </button>
 </div>
 <div class="qna-disclaimer">
-<span id="qna-disclaimer-mode">文件 RAG • 0 份已選文件</span>
+<span id="qna-disclaimer-mode">文件 RAG • 3 份已選文件</span>
 <span>AI 內容僅供資訊整理，請核對來源文件；不得取代醫師判斷。</span>
 </div>
 </div>
@@ -1160,15 +1230,15 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <div id="view-viewer" class="page-view">
 <header class="viewer-header">
 <div style="display:flex; align-items:center; gap:12px; min-width:0; overflow:hidden;">
-<button style="background:transparent; color:#aaa; border:none; padding:4px 8px; font-size:14px; display:flex; align-items:center; gap:6px; cursor:pointer; white-space:nowrap;" onclick="navigate('main')" onmouseover="this.style.color='#fff'; this.style.background='#222';" onmouseout="this.style.color='#aaa'; this.style.background='transparent';">
+<button style="background:transparent; color:#aaa; border:none; padding:4px 8px; font-size:14px; display:flex; align-items:center; gap:6px; cursor:pointer; white-space:nowrap; width:auto;" onclick="navigate('main')" onmouseover="this.style.color='#fff'; this.style.background='#222';" onmouseout="this.style.color='#aaa'; this.style.background='transparent';">
 <span>←</span> 返回首頁
 </button>
 <h2 style="font-size:17px; margin:0; font-weight:700; color:#fff; border-left:1px solid #333; padding-left:12px; letter-spacing:1px; white-space:nowrap;" id="viewer-patient-name-title">王小明 <span style="font-size:13px; font-weight:normal; color:#888;">女</span></h2>
 <span style="font-size:12px; color:#888; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" id="viewer-patient-meta-title">Patient ID : 279ca2a4-c2d9-4045-83de-f604ed069fe8</span>
 </div>
 <div class="viewer-header__actions">
-<button id="viewer-expand-btn" style="background:#262626; color:#8dcfc4; border:1px solid #404040; border-radius:2px; padding:5px 10px; font-size:12px; white-space:nowrap;" onclick="toggleViewerExpand()">放大檢視</button>
-<button style="background:#262626; color:#fff; border:1px solid #404040; border-radius:2px; padding:5px 12px; font-size:12px; white-space:nowrap;" onclick="navigate('summary')">返回摘要</button>
+<button id="viewer-expand-btn" style="background:#262626; color:#8dcfc4; border:1px solid #404040; border-radius:2px; padding:5px 10px; font-size:12px; white-space:nowrap; width:auto;" onclick="toggleViewerExpand()">放大檢視</button>
+<button style="background:#262626; color:#fff; border:1px solid #404040; border-radius:2px; padding:5px 12px; font-size:12px; white-space:nowrap; width:auto;" onclick="navigate('summary')">返回摘要</button>
 </div>
 </header>
 <div class="viewer-layout" id="viewer-layout">
@@ -1207,7 +1277,7 @@ AI分析結果僅供臨床判斷參考，非最終確定診斷。
 <div class="viewer-panel-box" style="flex:1; display:flex; flex-direction:column;">
 <div class="viewer-panel-header" style="display:flex; justify-content:space-between;">
 <span>筆記</span>
-<button style="background:#262626; border:1px solid #404040; color:#aaa; font-size:10px; padding:2px 6px; border-radius:2px;" onclick="alert('已複製筆記')">複製</button>
+<button style="background:#262626; border:1px solid #404040; color:#aaa; font-size:10px; padding:2px 6px; border-radius:2px; width:auto;" onclick="alert('已複製筆記')">複製</button>
 </div>
 <div style="padding:12px; flex:1;">
 <textarea class="viewer-note-textarea" placeholder="輸入腦部影像判讀筆記 (切換影像時保留)"></textarea>
@@ -1228,17 +1298,47 @@ ssn: "999-68-4494",
 department: "THE GENERAL HOSPITAL CORPORATION",
 modality: "門診 (症狀就診 - 腎盂腎炎)",
 examTime: "2018/02/13 13:04",
-status: "未提供",
+status: "未完成",
 severity: "safe",
-birth: "1999-07-02"
+birth: "1999-07-02",
+hasInitialPacket: true,
+shownOnHome: true
+},
+{
+id: "8f41c9b2-7a10-4c68-9e21-3b7d90a512e4",
+name: "林小美",
+gender: "女",
+age: "27 歲",
+ssn: "999-68-4495",
+department: "THE GENERAL HOSPITAL CORPORATION",
+modality: "門診 (症狀就診 - 腎盂腎炎)",
+examTime: "2018/02/13 13:04",
+status: "未完成",
+severity: "safe",
+birth: "1999-07-02",
+hasInitialPacket: false,
+shownOnHome: false
 }
 ];
+
+function getHomePatients() {
+return demoPatients.filter(p => p.shownOnHome);
+}
+
+function getCurrentPatient() {
+return demoPatients.find(dp => dp.id === currentPatientId) || demoPatients[0];
+}
+
+function formatPatientText(templateStr, patient = getCurrentPatient()) {
+return templateStr.replace(/王小明/g, patient.name);
+}
 
 let currentPatientId = demoPatients[0].id;
 const trackedIds = new Set([demoPatients[0].id]);
 let currentHeroIndex = 0;
 let currentMainFilter = '全部';
-const viewModes = { query: 'list', category: 'list', followup: 'list' };
+let modalPatientIndex = 0;
+const viewModes = { main: 'list', query: 'list', category: 'list', followup: 'list' };
 const PROGRESS_STAGES = ["解析需求", "病患資料", "臨床檢索", "整理 Context", "Skill 摘要", "時間軸", "臨床摘要", "報告輔助", "缺失資料", "儲存完成"];
 
 window.addEventListener('hashchange', handleHashChange);
@@ -1252,6 +1352,8 @@ if(el) el.innerHTML = headerHtml;
 renderHero(0);
 renderMain();
 updateMainCounts();
+updateSummaryData();
+syncSampleDocsState();
 document.getElementById('entry-overlay').style.display = 'flex';
 handleHashChange();
 });
@@ -1313,6 +1415,7 @@ const group = btnEl ? btnEl.closest('.view-toggles') : document.querySelector(`.
 if (group) {
 group.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
 }
+if (page === 'main') renderMain();
 if (page === 'query') renderQueryList();
 if (page === 'category') renderCategory();
 if (page === 'followup') renderFollowup();
@@ -1350,6 +1453,10 @@ document.getElementById('global-ai-summary').style.display = 'block';
 renderTimeline();
 updateSummaryData();
 }
+if (hash === 'qna') {
+const isClinical = document.getElementById('tab-clinical')?.classList.contains('active');
+if (isClinical) switchQnaTab('clinical');
+}
 if (hash === 'viewer') {
 const layout = document.getElementById('viewer-layout');
 const expBtn = document.getElementById('viewer-expand-btn');
@@ -1382,41 +1489,117 @@ renderMain();
 }
 
 function updateMainCounts() {
-document.getElementById('count-all').textContent = demoPatients.length;
-document.getElementById('count-pending').textContent = demoPatients.filter(p => p.status === '未提供').length;
-document.getElementById('count-done').textContent = demoPatients.filter(p => p.status !== '未提供').length;
+const homeList = getHomePatients();
+document.getElementById('count-all').textContent = homeList.length;
+document.getElementById('count-pending').textContent = homeList.filter(p => p.status === '未完成').length;
+document.getElementById('count-processing').textContent = homeList.filter(p => p.status === '處理中').length;
+document.getElementById('count-done').textContent = homeList.filter(p => p.status === '已歸檔').length;
+}
+
+function getStatusPillHtml(status) {
+if (status === '處理中') return `<span class="status-pill processing">處理中</span>`;
+if (status === '已歸檔') return `<span class="status-pill archived">已歸檔</span>`;
+return `<span class="status-pill">未完成</span>`;
+}
+
+function draftPatientReport(patientId) {
+const p = demoPatients.find(dp => dp.id === patientId) || demoPatients[0];
+if (p) p.status = '處理中';
+updateMainCounts();
+if (window.location.hash === '#main' || window.location.hash === '') renderMain();
+alert('暫存成功，個案狀態已更新為「處理中」');
+}
+
+function savePatientReport(patientId) {
+const p = demoPatients.find(dp => dp.id === patientId) || demoPatients[0];
+if (p) p.status = '已歸檔';
+updateMainCounts();
+if (window.location.hash === '#main' || window.location.hash === '') renderMain();
+alert('報告已儲存，個案狀態已更新為「已歸檔」');
 }
 
 function renderHero(index) {
-if (index < 0) index = demoPatients.length - 1;
-if (index >= demoPatients.length) index = 0;
-currentHeroIndex = index;
-const p = demoPatients[index];
+const homeList = getHomePatients();
+if (homeList.length === 0) return;
+const safeIndex = ((index % homeList.length) + homeList.length) % homeList.length;
+const p = homeList[safeIndex];
+const globalIndex = demoPatients.findIndex(dp => dp.id === p.id);
+currentHeroIndex = globalIndex >= 0 ? globalIndex : 0;
 
 document.getElementById('hero-name').textContent = p.name;
 document.getElementById('hero-meta').textContent = `${p.id} • ${p.gender} • ${p.age}`;
 document.getElementById('hero-time').textContent = p.examTime;
 document.getElementById('hero-complaint').textContent = p.modality;
 document.getElementById('hero-modality').textContent = p.department;
-document.getElementById('hero-pagination').textContent = `${index + 1} / ${demoPatients.length}`;
+document.getElementById('hero-pagination').textContent = `${safeIndex + 1} / ${homeList.length}`;
 const heroCard = document.getElementById('hero-card');
-heroCard.onclick = () => navigate('summary', index);
+heroCard.onclick = () => navigate('summary', currentHeroIndex);
 const trackBtn = document.getElementById('hero-track-btn');
 trackBtn.className = `star-btn hero__track-btn ${trackedIds.has(p.id) ? 'active' : ''}`;
-trackBtn.onclick = (e) => { e.stopPropagation(); toggleTrack(p.id); renderHero(currentHeroIndex); };
+trackBtn.onclick = (e) => { e.stopPropagation(); toggleTrack(p.id); renderHero(safeIndex); };
 }
 
-function prevPatient() { renderHero(currentHeroIndex - 1); }
-function nextPatient() { renderHero(currentHeroIndex + 1); }
+function prevPatient() {
+const homeList = getHomePatients();
+const cur = Math.max(0, homeList.findIndex(p => p.id === demoPatients[currentHeroIndex]?.id));
+renderHero(cur - 1);
+}
+function nextPatient() {
+const homeList = getHomePatients();
+const cur = Math.max(0, homeList.findIndex(p => p.id === demoPatients[currentHeroIndex]?.id));
+renderHero(cur + 1);
+}
 
 function renderMain() {
+const tableWrap = document.getElementById('main-table-wrap');
+const cardsWrap = document.getElementById('main-cards-container');
 const tbody = document.getElementById('main-table-body');
-let filtered = demoPatients;
-if (currentMainFilter === '未完成') filtered = filtered.filter(p => p.status === '未提供');
-else if (currentMainFilter === '已歸檔') filtered = filtered.filter(p => p.status !== '未提供');
+const headingEl = document.getElementById('main-list-heading');
+let filtered = getHomePatients();
+if (currentMainFilter === '未完成') filtered = filtered.filter(p => p.status === '未完成');
+else if (currentMainFilter === '處理中') filtered = filtered.filter(p => p.status === '處理中');
+else if (currentMainFilter === '已歸檔') filtered = filtered.filter(p => p.status === '已歸檔');
 
+if (headingEl) {
+headingEl.textContent = currentMainFilter === '全部' ? '全部個案' : `${currentMainFilter}個案`;
+}
 document.getElementById('main-list-count').textContent = `${filtered.length} 位病患`;
+const mode = viewModes.main;
 
+if (mode === 'card') {
+tableWrap.style.display = 'none';
+cardsWrap.style.display = 'grid';
+if (filtered.length === 0) {
+cardsWrap.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--color-text-sub); padding:32px; background:#fff; border:1px solid var(--color-border); border-radius:8px;">目前無符合條件的病患個案。</div>`;
+return;
+}
+cardsWrap.innerHTML = filtered.map((p) => {
+const originalIndex = demoPatients.findIndex(dp => dp.id === p.id);
+const isTracked = trackedIds.has(p.id);
+return `
+<div class="entity-card" onclick="navigate('summary', ${originalIndex})">
+<div class="entity-card__head">
+<div>
+<div class="entity-card__title">${p.name} ${getStatusPillHtml(p.status)}</div>
+<div class="entity-card__sub">${p.gender} • ${p.age}</div>
+</div>
+<button type="button" class="star-btn ${isTracked ? 'active' : ''}" onclick="event.stopPropagation(); toggleTrack('${p.id}')">☆</button>
+</div>
+<div class="entity-card__rows">
+<div class="entity-card__row"><span>Patient ID</span><span>${p.id}</span></div>
+<div class="entity-card__row"><span>就診類型</span><span>${p.modality}</span></div>
+<div class="entity-card__row"><span>就診機構</span><span>${p.department}</span></div>
+<div class="entity-card__row"><span>最近就診</span><span>${p.examTime}</span></div>
+</div>
+<div class="entity-card__actions">
+<button type="button" class="btn-primary" onclick="event.stopPropagation(); navigate('summary', ${originalIndex})">查看資料包</button>
+</div>
+</div>
+`;
+}).join('');
+} else {
+tableWrap.style.display = 'block';
+cardsWrap.style.display = 'none';
 if (filtered.length === 0) {
 tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--color-text-sub); padding:32px;">目前無符合條件的病患個案。</td></tr>`;
 return;
@@ -1426,7 +1609,7 @@ tbody.innerHTML = filtered.map((p) => {
 const originalIndex = demoPatients.findIndex(dp => dp.id === p.id);
 return `
 <tr onclick="navigate('summary', ${originalIndex})">
-<td><span class="td-name">${p.name}</span><span class="td-meta">${p.id} • ${p.gender} • ${p.age}</span></td>
+<td><span class="td-name">${p.name}</span>${getStatusPillHtml(p.status)}<span class="td-meta">${p.id} • ${p.gender} • ${p.age}</span></td>
 <td>${p.modality}</td>
 <td>${p.department}</td>
 <td><div style="font-weight:bold;">${p.examTime}</div><div class="td-meta">資料包 • 最近就診</div></td>
@@ -1437,21 +1620,35 @@ return `
 `;
 }).join('');
 }
+}
 
 function toggleTrack(id) {
 if (trackedIds.has(id)) trackedIds.delete(id);
 else trackedIds.add(id);
-renderHero(currentHeroIndex);
+renderHero(0);
 if(window.location.hash === '#followup') renderFollowup();
-else if(window.location.hash === '#main') renderMain();
+else if(window.location.hash === '#main' || window.location.hash === '') renderMain();
 else if(window.location.hash === '#summary') updateSummaryData();
 }
 
+const BASE_PATIENT_SUMMARY = `一名 27 歲女性病患（王小明，出生日期 1999-07-02，Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8），最近於 2018-02-13 因腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至 THE GENERAL HOSPITAL CORPORATION 症狀門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，並因頭痛評估接受腦部核磁共振掃描（Brain MRI，共 28 張切片）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]（目前尚無獨立之放射科判讀報告）。當日尿液檢查顯示亞硝酸鹽陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]、白血球酯酶 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]、尿潛血 + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]、顯微鏡白血球 26.644 /HPF [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]，且尿液細菌培養檢出大腸桿菌（Escherichia coli）> 100,000 CFU/mL [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]；已接受抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2] 並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（每日兩次，每次一錠）[MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]，該病況紀錄已於 2018-02-14 緩解。既往病史包含 2017-09-08 因牙齦炎與牙齦疾病接受牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2017-08-25 體檢紀錄血壓 114/66 mmHg、心率 100 次/分、BMI 33.12 kg/m²（身高 178.2 cm、體重 105.1 kg）、從未吸菸，且於 2017 年曾有壓力與親密伴侶暴力篩檢紀錄（均已緩解）；2016-09-26 曾因腳踝扭傷至急診就醫，開立 Ibuprofen 200 mg 需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f] 並完成物理治療照護計畫 [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]。目前仍持續進行自 2006 年起之體重管理計畫 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]，無已知過敏史。`;
+
+const BASE_REPORT_CONTENT = `病患王小明（27 歲女性，Patient ID: 279ca2a4-c2d9-4045-83de-f604ed069fe8）於 2018-02-13 因腎盂腎炎 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1] 至門診就醫 [Encounter/279ca2a4-c2d9-4045-604d-6a297d7ec23c]，同日並因頭痛評估接受腦部核磁共振掃描 (Brain MRI，共 28 張切片，ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880)，目前尚無獨立放射科判讀報告。
+
+尿液檢驗顯示亞硝酸鹽陽性、白血球酯酶 1+、尿潛血 +，尿沉渣白血球 26.644 /HPF，且尿液培養檢出 Escherichia coli > 100,000 CFU/mL (Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7)。當次已給予抗生素治療並開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，每日兩次、每次一錠 (MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b)。
+
+既往病史包括 2017-09-08 牙齦炎與牙齦疾病（牙結石清除、牙齦切除/成形術及氟化鈉口腔凝膠治療），以及 2016-09-26 腳踝扭傷急診紀錄。目前持續執行體重管理計畫，無已知過敏史。`;
+
 function updateSummaryData() {
-const p = demoPatients.find(dp => dp.id === currentPatientId) || demoPatients[0];
+const p = getCurrentPatient();
 if(p) {
 document.getElementById('summary-name').textContent = p.name;
 document.getElementById('summary-meta').innerHTML = `${p.age} • ${p.gender} <span style="opacity:0.5; margin:0 6px;">|</span> 出生日期 : ${p.birth} <span style="opacity:0.5; margin:0 6px;">|</span> ID : ${p.id}`;
+const summaryTextEl = document.getElementById('packet-summary-text');
+if (summaryTextEl) summaryTextEl.innerHTML = formatPatientText(BASE_PATIENT_SUMMARY, p);
+const reportContentEl = document.getElementById('report-content');
+if (reportContentEl) reportContentEl.value = formatPatientText(BASE_REPORT_CONTENT, p);
+
 const viewerTitle = document.getElementById('viewer-patient-name-title');
 const viewerMeta = document.getElementById('viewer-patient-meta-title');
 if (viewerTitle) viewerTitle.innerHTML = `${p.name} <span style="font-size:13px; font-weight:normal; color:#888; margin-left:8px;">${p.gender}</span>`;
@@ -1464,6 +1661,10 @@ btn.textContent = "已追蹤"; btn.style.background = "#eef2ff"; btn.style.borde
 } else {
 btn.textContent = "加入追蹤"; btn.style.background = "#f3f4f6"; btn.style.borderColor = "#d1d5db"; btn.style.color = "#111827";
 }
+}
+
+if (document.getElementById('tab-clinical')?.classList.contains('active')) {
+switchQnaTab('clinical');
 }
 }
 }
@@ -1483,8 +1684,10 @@ if (filtered.length === 0) {
 cardsWrap.innerHTML = `<div style="grid-column:1/-1; text-align:center; color:var(--color-text-sub); padding:32px; background:#fff; border:1px solid var(--color-border); border-radius:8px;">查無符合條件的病患。</div>`;
 return;
 }
-cardsWrap.innerHTML = filtered.map(p => `
-<div class="entity-card" onclick="openPacketModal('${p.name}', '${p.id}', '${p.gender}', '${p.age}', '${p.birth}', '${p.ssn}')">
+cardsWrap.innerHTML = filtered.map(p => {
+const idx = demoPatients.findIndex(dp => dp.id === p.id);
+return `
+<div class="entity-card" onclick="openPacketModal(${idx})">
 <div class="entity-card__head">
 <div>
 <div class="entity-card__title">${p.name}</div>
@@ -1498,10 +1701,11 @@ cardsWrap.innerHTML = filtered.map(p => `
 <div class="entity-card__row"><span>出生日期</span><span>${p.birth}</span></div>
 </div>
 <div class="entity-card__actions">
-<button class="btn-primary" onclick="event.stopPropagation(); openPacketModal('${p.name}', '${p.id}', '${p.gender}', '${p.age}', '${p.birth}', '${p.ssn}')">檢視 / 建立資料包</button>
+<button class="btn-primary" onclick="event.stopPropagation(); openPacketModal(${idx})">檢視 / 建立資料包</button>
 </div>
 </div>
-`).join('');
+`;
+}).join('');
 } else {
 tableWrap.style.display = 'block';
 cardsWrap.style.display = 'none';
@@ -1509,20 +1713,45 @@ if (filtered.length === 0) {
 tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--color-text-sub); padding:32px;">查無符合條件的病患。</td></tr>`;
 return;
 }
-tbody.innerHTML = filtered.map(p => `
-<tr onclick="openPacketModal('${p.name}', '${p.id}', '${p.gender}', '${p.age}', '${p.birth}', '${p.ssn}')">
+tbody.innerHTML = filtered.map(p => {
+const idx = demoPatients.findIndex(dp => dp.id === p.id);
+return `
+<tr onclick="openPacketModal(${idx})">
 <td><span class="td-name">${p.name}</span><span class="td-meta">${p.gender} • ${p.age}</span></td>
 <td style="word-break:break-all;">${p.id}</td>
-<td>${p.ssn}</td>
-<td>${p.birth}</td>
+<td style="white-space:nowrap;">${p.ssn}</td>
+<td style="white-space:nowrap;">${p.birth}</td>
 </tr>
-`).join('');
+`;
+}).join('');
 }
 }
 
-function openPacketModal(name, id, gender, age, birth, ssn) {
-document.getElementById('modal-name').textContent = name;
-document.getElementById('modal-meta').textContent = `身分識別 : ${ssn} | 性別 : ${gender} | 年齡 : ${age} | 出生日期 : ${birth} | Patient ID : ${id}`;
+function renderModalHistoryPacket() {
+const p = demoPatients[modalPatientIndex] || demoPatients[0];
+const slot = document.getElementById('modal-history-slot');
+if (!slot) return;
+if (!p.hasInitialPacket) {
+slot.innerHTML = `<div style="padding:24px 16px; text-align:center; color:var(--color-text-sub); border:1px dashed var(--color-border); border-radius:8px; background:#fff; font-size:12px; line-height:1.6;">尚未建立${p.name}的臨床資料包。<br/>請於右側點選「開始建立」。</div>`;
+return;
+}
+slot.innerHTML = `
+<div class="request-card" onclick="closePacketModal(); navigate('summary', ${modalPatientIndex});">
+<span class="request-badge done">已完成</span>
+<h3>${p.name}</h3>
+<p>2018/02/13 腎盂腎炎與全病史脈絡包</p>
+<p style="color:var(--color-primary); font-weight:bold; margin-top:12px;">立即開啟資料包 →</p>
+</div>
+`;
+}
+
+function openPacketModal(index) {
+const p = demoPatients[index] || demoPatients[0];
+modalPatientIndex = demoPatients.findIndex(dp => dp.id === p.id);
+document.getElementById('modal-name').textContent = p.name;
+document.getElementById('modal-meta').textContent = `身分識別 : ${p.ssn} | 性別 : ${p.gender} | 年齡 : ${p.age} | 出生日期 : ${p.birth} | Patient ID : ${p.id}`;
+document.getElementById('confirm-modal-desc').textContent = `系統正在處理${p.name}的資料包，完成後會在畫面左下角通知您。接下來想做什麼？`;
+renderModalHistoryPacket();
 document.getElementById('packet-modal').classList.add('active');
 document.getElementById('modal-check-all').checked = true;
 toggleAllSkills(true);
@@ -1540,12 +1769,12 @@ function closeConfirmModal() { document.getElementById('confirm-modal').classLis
 function goToPacketRequests() {
 closeConfirmModal();
 navigate('packet-requests');
-startPacketSimulation();
+startPacketSimulation(modalPatientIndex);
 }
 
 let completedCount = 1;
-function startPacketSimulation() {
-const p = demoPatients[0];
+function startPacketSimulation(patientIdx = 0) {
+const p = demoPatients[patientIdx] || demoPatients[0];
 document.getElementById('running-name').textContent = p.name;
 document.getElementById('running-id').textContent = `Patient ID : ${p.id}`;
 document.getElementById('running-time').textContent = `建立：${new Date().toLocaleString('zh-TW')}`;
@@ -1575,19 +1804,25 @@ setTimeout(() => {
 document.getElementById('running-container').style.display = 'none';
 document.getElementById('running-empty').style.display = 'block';
 document.getElementById('running-count').textContent = "0 筆";
-addCompletedCard();
+p.hasInitialPacket = true;
+p.shownOnHome = true;
+trackedIds.add(p.id);
+updateMainCounts();
+renderHero(0);
+renderMain();
+addCompletedCard(patientIdx);
 }, 800);
 }
 }, 450);
 }
 
-function addCompletedCard() {
-const p = demoPatients[0];
+function addCompletedCard(patientIdx = 0) {
+const p = demoPatients[patientIdx] || demoPatients[0];
 const grid = document.getElementById('completed-requests-grid');
 const now = new Date().toLocaleString('zh-TW');
 completedCount++;
 const newCard = `
-<div class="request-card" onclick="navigate('summary', 0)">
+<div class="request-card" onclick="navigate('summary', ${patientIdx})">
 <span class="request-badge done">已完成</span>
 <h3>${p.name}</h3>
 <p>Patient ID : ${p.id}</p>
@@ -1600,11 +1835,12 @@ document.getElementById('completed-count').textContent = `${completedCount} 筆`
 }
 
 function renderCategory() {
-const p = demoPatients[0];
+const p = getCurrentPatient();
 const tableWrap = document.getElementById('category-table-wrap');
 const cardsWrap = document.getElementById('category-cards-container');
 const tbody = document.getElementById('category-table-body');
 const mode = viewModes.category;
+const patientIdx = Math.max(0, demoPatients.findIndex(dp => dp.id === p.id));
 
 if (mode === 'card') {
 tableWrap.style.display = 'none';
@@ -1629,7 +1865,7 @@ MRI • Brain
 </div>
 <div class="entity-card__actions">
 <button class="btn-primary" onclick="event.stopPropagation(); navigate('viewer')">開啟檢測器</button>
-<button class="btn-outline" onclick="event.stopPropagation(); navigate('summary', 0)">查看資料包</button>
+<button class="btn-outline" onclick="event.stopPropagation(); navigate('summary', ${patientIdx})">查看資料包</button>
 </div>
 </div>
 `;
@@ -1640,10 +1876,10 @@ tbody.innerHTML = `
 <tr onclick="navigate('viewer')">
 <td><span class="td-name">${p.name}</span><span class="td-meta">${p.id} • ${p.gender} • ${p.age}</span></td>
 <td><span style="background:#f3f4f6; padding:4px 8px; border-radius:4px; border:1px solid var(--color-border); font-size:11px; font-weight:bold;">MRI</span></td>
-<td><div style="font-weight:600;">腦部掃描 (Brain MRI • 28 張切片)</div><span class="td-meta">本機資料夾: ./97/ (1-01.dcm ~ 1-28.dcm)</span></td>
-<td>2018-02-13</td>
+<td><div style="font-weight:600; word-break:break-word;">腦部掃描 (Brain MRI • 28 張切片)</div><span class="td-meta">本機資料夾: ./97/ (1-01.dcm ~ 1-28.dcm)</span></td>
+<td style="white-space:nowrap;">2018-02-13</td>
 <td><div style="width:40px; height:40px; background:#111827; color:#8dcfc4; border-radius:4px; border:1px solid var(--color-border); display:grid; place-items:center; font-size:11px; font-weight:bold;">MRI</div></td>
-<td><div style="display:flex;gap:8px;"><button class="btn-outline" onclick="event.stopPropagation(); navigate('viewer')">查看</button><button class="btn-outline" style="background:#f9fafb; color:var(--color-text-sub);" onclick="event.stopPropagation(); navigate('summary', 0)">查看資料包</button></div></td>
+<td><div style="display:flex;gap:6px;flex-wrap:wrap;"><button class="btn-outline" style="padding:6px 10px;font-size:12px;" onclick="event.stopPropagation(); navigate('viewer')">查看</button><button class="btn-outline" style="padding:6px 10px;font-size:12px;background:#f9fafb;color:var(--color-text-sub);" onclick="event.stopPropagation(); navigate('summary', ${patientIdx})">資料包</button></div></td>
 </tr>
 `;
 }
@@ -1705,8 +1941,8 @@ return `
 <td><div style="font-weight:bold;">${p.examTime}</div><div class="td-meta">資料包 • 最近就診</div></td>
 <td><span style="border:1px solid var(--color-border); padding:2px 8px; border-radius:4px; font-size:11px; color:var(--color-text-sub);">持續追蹤中</span></td>
 <td style="display:flex; gap:12px; justify-content:flex-end;">
-<button class="btn-primary" onclick="event.stopPropagation(); navigate('summary', ${originalIndex})">查看摘要</button>
-<button class="star-btn active" style="background:#fff; border:1px solid var(--color-border); border-radius:4px; padding:4px 12px;" onclick="event.stopPropagation(); toggleTrack('${p.id}')">☆</button>
+<button class="btn-primary" style="width:auto;" onclick="event.stopPropagation(); navigate('summary', ${originalIndex})">查看摘要</button>
+<button class="star-btn active" style="background:#fff; border:1px solid var(--color-border); border-radius:4px; padding:4px 12px; width:auto;" onclick="event.stopPropagation(); toggleTrack('${p.id}')">☆</button>
 </td>
 </tr>
 `}).join('');
@@ -1716,7 +1952,8 @@ return `
 const domainDataMap = {
 'diagnosis': {
 title: '診斷詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M5 3H3v3M13 3h2v3"/><path d="M9 12v3a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="10" r="2"/></svg>',
-aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患王小明的診斷脈絡。<br><br>計畫如下：<br>1. 辨識病患基本資料（女性、1999-07-02 出生、27 歲）。<br>2. 彙整 Condition 資源中的主要臨床診斷與其臨床狀態、起始與緩解日期。<br>3. 確保每項診斷均精準對應原始 FHIR 來源 ID。<br><br>**診斷清單:**<br>- 腎盂腎炎 (Pyelonephritis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]<br>- 牙齦疾病 (Gingival disease): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]<br>- 牙齦炎 (Gingivitis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4]<br>- 壓力 (Stress): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]<br>- 腳踝扭傷 (Sprain of ankle) 與扭傷 (Sprain): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657, Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]<br><br>草稿已完成。&lt;unused95&gt;</div>27 歲女性病患王小明（Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8）最近於 2018-02-13 確診腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已於 2018-02-14 標記為緩解。既往病史包含 2017-08-25 診斷之牙齦炎 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4] 與 2017-09-08 牙齦疾病 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]（均已緩解）、2017-08-25 紀錄之壓力 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]（已緩解），以及 2016-09-26 因急診就醫確認之腳踝扭傷 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657] 與扭傷 [Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]（於 2016-11-01 緩解）。`,
+thoughtHtml: `<unused94>thought<br>使用者要求總結病患王小明的診斷脈絡。<br><br>計畫如下：<br>1. 辨識病患基本資料（女性、1999-07-02 出生、27 歲）。<br>2. 彙整 Condition 資源中的主要臨床診斷與其臨床狀態、起始與緩解日期。<br>3. 確保每項診斷均精準對應原始 FHIR 來源 ID。<br><br>**診斷清單:**<br>- 腎盂腎炎 (Pyelonephritis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]<br>- 牙齦疾病 (Gingival disease): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]<br>- 牙齦炎 (Gingivitis): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4]<br>- 壓力 (Stress): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]<br>- 腳踝扭傷 (Sprain of ankle) 與扭傷 (Sprain): 已緩解, 確認 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657, Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]<br><br>草稿已完成。<unused95>`,
+summaryBody: `27 歲女性病患王小明（Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8）最近於 2018-02-13 確診腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已於 2018-02-14 標記為緩解。既往病史包含 2017-08-25 診斷之牙齦炎 [Condition/279ca2a4-c2d9-4045-d738-e12350a4d0b4] 與 2017-09-08 牙齦疾病 [Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019]（均已緩解）、2017-08-25 紀錄之壓力 [Condition/279ca2a4-c2d9-4045-1a94-b21e6f146802]（已緩解），以及 2016-09-26 因急診就醫確認之腳踝扭傷 [Condition/279ca2a4-c2d9-4045-43c1-dc35314eb657] 與扭傷 [Condition/279ca2a4-c2d9-4045-8d4f-1cbc0db32a13]（於 2016-11-01 緩解）。`,
 records: [
 { title: '腎盂腎炎 (Pyelonephritis)', status: '已緩解 (resolved) • 已確認 (confirmed)', onset: '2018-02-13 13:04', abatement: '2018-02-14 01:38', code: 'SNOMED CT: 45816000', source: 'Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1' },
 { title: '牙齦疾病 (Gingival disease)', status: '已緩解 (resolved) • 已確認 (confirmed)', onset: '2017-09-08 15:55', abatement: '2017-09-08 17:46', code: 'SNOMED CT: 18718003', source: 'Condition/279ca2a4-c2d9-4045-2ca9-a95e3f95d019' },
@@ -1728,7 +1965,8 @@ records: [
 },
 'imaging': {
 title: '影像詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-3 4 4"/></svg>',
-aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患先前的影像脈絡。<br>提供的影像資料包含一筆腦部核磁共振掃描（Brain MRI），檢查日期 2018-02-13，共 1 Series / 28 張 DICOM 切片（./97/1-01.dcm ~ 1-28.dcm），Study UID 為 1.2.840.99999999.76048997.1504883792656，來源：ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880。<br>檢查部位為腦部（Brain），檢查原因為頭痛評估，於 THE GENERAL HOSPITAL CORPORATION 執行。<br>目前來源資料中尚未附帶獨立之放射科判讀報告，依嚴格還原原則不自行捏造影像發現，建議醫師透過影像檢測器直接檢視原始切片。<br><br>草稿已準備就緒。&lt;unused95&gt;</div>病患於 2018-02-13 在 THE GENERAL HOSPITAL CORPORATION 因頭痛評估接受腦部核磁共振掃描（Brain MRI，Modality: MRI，檢查部位：腦部 [Brain]，1 Series / 28 張 DICOM 切片，Study UID: 1.2.840.99999999.76048997.1504883792656）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]。目前該筆腦部影像尚無獨立之放射科判讀報告，可點擊上方「影像檢測器」檢視 28 張原始切片。`,
+thoughtHtml: `<unused94>thought<br>使用者要求總結病患先前的影像脈絡。<br>提供的影像資料包含一筆腦部核磁共振掃描（Brain MRI），檢查日期 2018-02-13，共 1 Series / 28 張 DICOM 切片（./97/1-01.dcm ~ 1-28.dcm），Study UID 為 1.2.840.99999999.76048997.1504883792656，來源：ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880。<br>檢查部位為腦部（Brain），檢查原因為頭痛評估，於 THE GENERAL HOSPITAL CORPORATION 執行。<br>目前來源資料中尚未附帶獨立之放射科判讀報告，依嚴格還原原則不自行捏造影像發現，建議醫師透過影像檢測器直接檢視原始切片。<br><br>草稿已準備就緒。<unused95>`,
+summaryBody: `病患於 2018-02-13 在 THE GENERAL HOSPITAL CORPORATION 因頭痛評估接受腦部核磁共振掃描（Brain MRI，Modality: MRI，檢查部位：腦部 [Brain]，1 Series / 28 張 DICOM 切片，Study UID: 1.2.840.99999999.76048997.1504883792656）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]。目前該筆腦部影像尚無獨立之放射科判讀報告，可點擊上方「影像檢測器」檢視 28 張原始切片。`,
 records: [
 {
 title: '腦部核磁共振掃描 (Brain MRI)',
@@ -1745,7 +1983,8 @@ source: 'ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880'
 },
 'medication': {
 title: '用藥詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2"><path d="m9 4-5 5a6 6 0 0 0 8.5 8.5l5-5A6 6 0 0 0 9 4Z"/><path d="m6.5 6.5 8.5 8.5"/></svg>',
-aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患之用藥與過敏史脈絡。<br><br>**用藥紀錄:**<br>1. amoxicillin 875 MG / clavulanate 125 MG Oral Tablet (2018-02-13, completed) - 每日 2 次每次 1 錠，適應症：腎盂腎炎 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]<br>2. sodium fluoride 0.0272 MG/MG Oral Gel (2017-09-08, completed) - 適應症：牙齦炎 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]<br>3. Ibuprofen 200 MG Oral Tablet (2016-09-26, completed) - 需要時服用 (Take as needed) [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]<br><br>**過敏資訊:**<br>- 臨床病歷記載 No Known Allergies（無已知過敏史），未見結構化 AllergyIntolerance 資源。<br><br>草稿完成。&lt;unused95&gt;</div>病患共有三筆歷史處方紀錄（狀態均為已完成）：最近於 2018-02-13 因腎盂腎炎開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，用法為每日兩次、每次一錠 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]；2017-09-08 因牙齦炎開立並使用 Sodium fluoride 0.0272 mg/mg 口腔凝膠 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2016-09-26 因扭傷急診開立 Ibuprofen 200 mg 口服錠，指示需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]。臨床病歷記載無已知藥物過敏史。`,
+thoughtHtml: `<unused94>thought<br>使用者要求總結病患之用藥與過敏史脈絡。<br><br>**用藥紀錄:**<br>1. amoxicillin 875 MG / clavulanate 125 MG Oral Tablet (2018-02-13, completed) - 每日 2 次每次 1 錠，適應症：腎盂腎炎 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]<br>2. sodium fluoride 0.0272 MG/MG Oral Gel (2017-09-08, completed) - 適應症：牙齦炎 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]<br>3. Ibuprofen 200 MG Oral Tablet (2016-09-26, completed) - 需要時服用 (Take as needed) [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]<br><br>**過敏資訊:**<br>- 臨床病歷記載 No Known Allergies（無已知過敏史），未見結構化 AllergyIntolerance 資源。<br><br>草稿完成。<unused95>`,
+summaryBody: `病患共有三筆歷史處方紀錄（狀態均為已完成）：最近於 2018-02-13 因腎盂腎炎開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠，用法為每日兩次、每次一錠 [MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]；2017-09-08 因牙齦炎開立並使用 Sodium fluoride 0.0272 mg/mg 口腔凝膠 [MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]；2016-09-26 因扭傷急診開立 Ibuprofen 200 mg 口服錠，指示需要時服用 [MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]。臨床病歷記載無已知藥物過敏史。`,
 records: [
 { title: 'Amoxicillin 875 MG / Clavulanate 125 MG Oral Tablet', status: '已完成 (completed) • Community', dosage: '每日 2 次，每次 1 錠（口服）', reason: '腎盂腎炎 (Pyelonephritis)', onset: '2018-02-13 14:38', requester: 'Dr. Paris331 Ruecker817', source: 'MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b' },
 { title: 'Sodium fluoride 0.0272 MG/MG Oral Gel', status: '已完成 (completed) • Outpatient', dosage: '門診牙科局部施用（詳見 MedicationAdministration/0427faa3-65e3-d52e-ffae-97597ebb8395）', reason: '牙齦炎 (Gingivitis)', onset: '2017-09-08 18:36', requester: 'Dr. Paris331 Ruecker817', source: 'MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80' },
@@ -1754,7 +1993,8 @@ records: [
 },
 'treatment': {
 title: '治療詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M3 10v11M21 13v8M3 18h18"/><path d="M3 13h15a3 3 0 0 1 3 3v2"/><rect x="5" y="9" width="5" height="4" rx="1"/><path d="M16 3v6M13 6h6"/></svg>',
-aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結處置 (Procedure) 與照護計畫 (CarePlan)。<br><br>**主要處置:**<br>- 2018-02-13: 抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]、尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49]<br>- 2017-09-08: 牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987]、牙齦上/下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]<br><br>**照護計畫:**<br>- 2016-09-26 ~ 2016-11-01: 物理治療照護計畫 (completed) [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]<br>- 2006-06-23 起: 體重管理計畫 (active) [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]<br><br>草稿完成。&lt;unused95&gt;</div>病患於 2018-02-13 接受尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49] 及抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]；2017-09-08 因牙齦炎與牙齦疾病完成牙齦上及牙齦下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]、牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987] 與術後照護及塗氟治療。照護計畫方面，2016-09-26 至 2016-11-01 已完成針對腳踝扭傷的物理治療計畫（含 RICE 與伸展運動）[CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]，而自 2006-06-23 啟動的體重管理計畫（熱量限制飲食、增加體能活動）目前仍維持進行中狀態 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]。`,
+thoughtHtml: `<unused94>thought<br>使用者要求總結處置 (Procedure) 與照護計畫 (CarePlan)。<br><br>**主要處置:**<br>- 2018-02-13: 抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]、尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49]<br>- 2017-09-08: 牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987]、牙齦上/下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]<br><br>**照護計畫:**<br>- 2016-09-26 ~ 2016-11-01: 物理治療照護計畫 (completed) [CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]<br>- 2006-06-23 起: 體重管理計畫 (active) [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]<br><br>草稿完成。<unused95>`,
+summaryBody: `病患於 2018-02-13 接受尿液分析與顯微鏡/培養檢查 [Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49] 及抗生素治療 [Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2]；2017-09-08 因牙齦炎與牙齦疾病完成牙齦上及牙齦下牙結石清除 [Procedure/279ca2a4-c2d9-4045-cb8e-a96b2723bd8b]、牙齦切除/成形術 [Procedure/279ca2a4-c2d9-4045-1e7d-cd6a729c4987] 與術後照護及塗氟治療。照護計畫方面，2016-09-26 至 2016-11-01 已完成針對腳踝扭傷的物理治療計畫（含 RICE 與伸展運動）[CarePlan/279ca2a4-c2d9-4045-0c28-6bb9e7b22acb]，而自 2006-06-23 啟動的體重管理計畫（熱量限制飲食、增加體能活動）目前仍維持進行中狀態 [CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]。`,
 records: [
 { title: '抗生素治療 (Antibiotic therapy)', status: 'completed', reason: '腎盂腎炎 (Pyelonephritis)', detail: '配合尿液培養結果施行抗生素治療', onset: '2018-02-13 14:28', location: 'THE GENERAL HOSPITAL CORPORATION', source: 'Procedure/279ca2a4-c2d9-4045-7f14-eaf3f78101f2' },
 { title: '尿液分析與顯微鏡/培養檢查', status: 'completed', reason: '腎盂腎炎評估', detail: 'Urinalysis with reflex to microscopy and culture', onset: '2018-02-13 14:18', location: 'THE GENERAL HOSPITAL CORPORATION', source: 'Procedure/279ca2a4-c2d9-4045-8d05-37558f436f49' },
@@ -1766,7 +2006,8 @@ records: [
 },
 'observation': {
 title: '檢驗詳細資料', titleIcon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M8 3h8M10 3v7l-5 8a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-8V3"/><path d="M8 15h8"/><path d="M10 18h.01M14 18h.01"/></svg>',
-aiSummary: `<div class="thought-block">&lt;unused94&gt;thought<br>使用者要求總結病患之檢驗與生命徵象觀察結果。<br><br>**2018-02-13 尿液檢驗 (Laboratory):**<br>- 尿液培養: &gt; 100,000 CFU/mL Escherichia coli [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]<br>- 尿沉渣白血球: 26.644 /[HPF] [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]<br>- 尿液亞硝酸鹽: 陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]<br>- 尿液白血球酯酶: 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]<br>- 尿潛血: + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]<br>- 尿蛋白: 10.595 mg/dL [Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16]<br><br>**2017-08-25 生命徵象與篩檢 (Vital Signs / Survey):**<br>- 血壓: 114/66 mmHg [Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9]<br>- 心率: 100 /min [Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb]<br>- BMI: 33.12 kg/m2 (身高 178.2 cm, 體重 105.1 kg) [Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56]<br>- PHQ-2 憂鬱篩檢: 1 分 [Observation/279ca2a4-c2d9-4045-77f0-a3000c167918]<br><br>草稿完成。&lt;unused95&gt;</div>2018-02-13 尿液檢驗顯示明顯泌尿道感染徵象：尿液細菌培養檢出大腸桿菌（Escherichia coli）&gt; 100,000 CFU/mL（Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7），尿沉渣白血球為 26.644 /[HPF]（Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7），亞硝酸鹽呈陽性（Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3），白血球酯酶為 1+（Observation/279ca2a4-c2d9-4045-886e-25517abe6497），尿潛血為 +（Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f），尿蛋白 10.595 mg/dL（Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16）。先前 2017-08-25 生命徵象紀錄血壓 114/66 mmHg（Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9）、心率 100 次/分（Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb）、BMI 33.12 kg/m²（Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56），PHQ-2 憂鬱量表為 1 分（Observation/279ca2a4-c2d9-4045-77f0-a3000c167918）。`,
+thoughtHtml: `<unused94>thought<br>使用者要求總結病患之檢驗與生命徵象觀察結果。<br><br>**2018-02-13 尿液檢驗 (Laboratory):**<br>- 尿液培養: > 100,000 CFU/mL Escherichia coli [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]<br>- 尿沉渣白血球: 26.644 /[HPF] [Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7]<br>- 尿液亞硝酸鹽: 陽性 [Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3]<br>- 尿液白血球酯酶: 1+ [Observation/279ca2a4-c2d9-4045-886e-25517abe6497]<br>- 尿潛血: + [Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f]<br>- 尿蛋白: 10.595 mg/dL [Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16]<br><br>**2017-08-25 生命徵象與篩檢 (Vital Signs / Survey):**<br>- 血壓: 114/66 mmHg [Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9]<br>- 心率: 100 /min [Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb]<br>- BMI: 33.12 kg/m2 (身高 178.2 cm, 體重 105.1 kg) [Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56]<br>- PHQ-2 憂鬱篩檢: 1 分 [Observation/279ca2a4-c2d9-4045-77f0-a3000c167918]<br><br>草稿完成。<unused95>`,
+summaryBody: `2018-02-13 尿液檢驗顯示明顯泌尿道感染徵象：尿液細菌培養檢出大腸桿菌（Escherichia coli）> 100,000 CFU/mL（Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7），尿沉渣白血球為 26.644 /[HPF]（Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7），亞硝酸鹽呈陽性（Observation/279ca2a4-c2d9-4045-561b-5deefb69abc3），白血球酯酶為 1+（Observation/279ca2a4-c2d9-4045-886e-25517abe6497），尿潛血為 +（Observation/279ca2a4-c2d9-4045-7080-ee88a1445c9f），尿蛋白 10.595 mg/dL（Observation/279ca2a4-c2d9-4045-edb9-1475b3072a16）。先前 2017-08-25 生命徵象紀錄血壓 114/66 mmHg（Observation/279ca2a4-c2d9-4045-82e6-1347bed757c9）、心率 100 次/分（Observation/279ca2a4-c2d9-4045-b6ed-0395bf06b9fb）、BMI 33.12 kg/m²（Observation/279ca2a4-c2d9-4045-a477-0f11458b7e56），PHQ-2 憂鬱量表為 1 分（Observation/279ca2a4-c2d9-4045-77f0-a3000c167918）。`,
 records: [
 { title: '尿液細菌培養 (Urine Culture)', result: '> 100,000 CFU/mL Escherichia coli', status: 'final', category: 'Laboratory', date: '2018-02-13 14:28', source: 'Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7' },
 { title: '尿沉渣白血球 (Leukocytes, HPF)', result: '26.644 /[HPF]', status: 'final', category: 'Laboratory', date: '2018-02-13 14:28', source: 'Observation/279ca2a4-c2d9-4045-8893-ec07a86373d7' },
@@ -1781,6 +2022,16 @@ records: [
 ]
 }
 };
+
+function toggleThoughtSection(btnEl) {
+const box = btnEl.closest('.thought-collapsible');
+if (!box) return;
+const isOpen = box.classList.toggle('open');
+btnEl.querySelector('.thought-toggle-label').textContent = isOpen
+  ? '收合推理草稿（thought ～ 草稿已完成）'
+  : '展開推理草稿（thought ～ 草稿已完成）';
+btnEl.querySelector('.thought-toggle-arrow').textContent = isOpen ? '▴' : '▾';
+}
 
 let activeDomain = null;
 let detailSelectedIndex = 0;
@@ -1804,13 +2055,24 @@ globalSummary.style.display = 'block';
 const data = domainDataMap[domainKey];
 if (!data) return;
 
+const p = getCurrentPatient();
+const thoughtRendered = formatPatientText(data.thoughtHtml, p);
+const summaryRendered = formatPatientText(data.summaryBody, p);
+
 container.innerHTML = `
 <h2 style="font-size:18px; margin-bottom:16px; display:flex; align-items:center; gap:8px; color: var(--color-text);">
 ${data.titleIcon} ${data.title}
 </h2>
 <div class="detail-ai-box">
 <h3 style="font-size:16px; font-weight:bold;">AI整理摘要</h3>
-${data.aiSummary}
+<div class="thought-collapsible">
+<button type="button" class="thought-toggle-btn" onclick="toggleThoughtSection(this)">
+<span class="thought-toggle-label">展開推理草稿（thought ～ 草稿已完成）</span>
+<span class="thought-toggle-arrow">▾</span>
+</button>
+<div class="thought-block">${thoughtRendered}</div>
+</div>
+<div>${summaryRendered}</div>
 <div style="font-size:11px; color:#888; margin-top:16px;">摘要需搭配來源核對，不取代原始紀錄。</div>
 </div>
 
@@ -2021,10 +2283,56 @@ btn.textContent = isHidden ? '收起 14 筆來源 ↑' : '展開全部 14 筆來
 function simulateReportGen() {
 const textarea = document.getElementById('report-content');
 const req = document.getElementById('report-input').value.trim();
+const p = getCurrentPatient();
 textarea.value = 'AI 報告處理中...';
 setTimeout(() => {
-textarea.value = `[依客製化需求更新之繁體中文臨床報告${req ? '：' + req : ''}]\n\n病患：王小明（27 歲女性，Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8）\n\n1. 近期急性病程與影像（2018-02-13）：\n- 診斷：腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已緩解。\n- 影像：腦部核磁共振掃描（Brain MRI，28 張切片，頭痛評估）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]，尚無獨立判讀報告。\n- 檢驗：尿液細菌培養檢出大腸桿菌（E. coli）> 100,000 CFU/mL、尿沉渣白血球 26.644 /HPF、亞硝酸鹽陽性、白血球酯酶 1+、尿潛血 +。\n- 處置與用藥：施行抗生素治療，開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（每日 2 次、每次 1 錠）。\n\n2. 既往病史重點：\n- 2017-09-08 牙齦炎與牙齦疾病：接受牙結石清除、牙齦切除/成形術及氟化鈉凝膠治療。\n- 2017-08-25 體檢：血壓 114/66 mmHg、心率 100 次/分、BMI 33.12 kg/m²、從未吸菸。\n- 2016-09-26 腳踝扭傷：急診開立 Ibuprofen 200 mg PRN 並完成物理治療。\n- 持續照護：2006 年起進行體重管理計畫；無已知過敏史。\n\n3. 缺漏提醒：\n- 缺少腦部 MRI 獨立放射科判讀報告，以及腎盂腎炎療程後之追蹤尿液培養與腎功能檢驗數據。`;
+const generated = `[依客製化需求更新之繁體中文臨床報告${req ? '：' + req : ''}]\n\n病患：王小明（27 歲女性，Patient/279ca2a4-c2d9-4045-83de-f604ed069fe8）\n\n1. 近期急性病程與影像（2018-02-13）：\n- 診斷：腎盂腎炎（Pyelonephritis）[Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已緩解。\n- 影像：腦部核磁共振掃描（Brain MRI，28 張切片，頭痛評估）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]，尚無獨立判讀報告。\n- 檢驗：尿液細菌培養檢出大腸桿菌（E. coli）> 100,000 CFU/mL、尿沉渣白血球 26.644 /HPF、亞硝酸鹽陽性、白血球酯酶 1+、尿潛血 +。\n- 處置與用藥：施行抗生素治療，開立 Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（每日 2 次、每次 1 錠）。\n\n2. 既往病史重點：\n- 2017-09-08 牙齦炎與牙齦疾病：接受牙結石清除、牙齦切除/成形術及氟化鈉凝膠治療。\n- 2017-08-25 體檢：血壓 114/66 mmHg、心率 100 次/分、BMI 33.12 kg/m²、從未吸菸。\n- 2016-09-26 腳踝扭傷：急診開立 Ibuprofen 200 mg PRN 並完成物理治療。\n- 持續照護：2006 年起進行體重管理計畫；無已知過敏史。\n\n3. 缺漏提醒：\n- 缺少腦部 MRI 獨立放射科判讀報告，以及腎盂腎炎療程後之追蹤尿液培養與腎功能檢驗數據。`;
+textarea.value = formatPatientText(generated, p);
 }, 700);
+}
+
+// ==========================================
+// QnA INTERACTION (截圖來源文件與文件知識問答)
+// ==========================================
+function getCheckedSampleDocs() {
+return Array.from(document.querySelectorAll('.qna-sample-doc-cb'))
+  .filter(cb => cb.checked)
+  .map(cb => cb.value);
+}
+
+function setAllSampleDocs(checked) {
+document.querySelectorAll('.qna-sample-doc-cb').forEach(cb => { cb.checked = checked; });
+syncSampleDocsState();
+}
+
+function filterSampleDocs(keyword) {
+const q = (keyword || '').trim().toLowerCase();
+document.querySelectorAll('#qna-doc-list .qna-doc-row').forEach(row => {
+const name = (row.dataset.docName || '').toLowerCase();
+row.style.display = (!q || name.includes(q)) ? 'flex' : 'none';
+});
+}
+
+function syncSampleDocsState() {
+const allCbs = Array.from(document.querySelectorAll('.qna-sample-doc-cb'));
+const total = allCbs.length;
+const checkedCount = allCbs.filter(cb => cb.checked).length;
+
+const counter = document.getElementById('qna-selected-counter');
+const mineRatio = document.getElementById('qna-mine-ratio');
+const groupMine = document.getElementById('qna-group-mine');
+
+if (counter) counter.textContent = `已勾選 ${checkedCount}/${total} 份`;
+if (mineRatio) mineRatio.textContent = `${checkedCount}/${total}`;
+if (groupMine) groupMine.checked = checkedCount === total && total > 0;
+
+const isDocTab = document.getElementById('tab-doc')?.classList.contains('active');
+if (isDocTab) {
+const qnaHint = document.getElementById('qna-tab-hint');
+const modeSpan = document.getElementById('qna-disclaimer-mode');
+if (qnaHint) qnaHint.innerHTML = `ⓘ 已選 ${checkedCount} 份文件 • 不帶入病人 CCP`;
+if (modeSpan) modeSpan.textContent = `文件 RAG • ${checkedCount} 份已選文件`;
+}
 }
 
 function resetQnAChat() {
@@ -2040,6 +2348,11 @@ log.innerHTML = `
 </div>
 `;
 document.getElementById('qna-cite-count').textContent = '0';
+document.getElementById('qna-cite-list').innerHTML = `
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d1d5db" stroke-width="1.5" style="margin-bottom:16px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+<div style="font-weight:bold; font-size:14px; margin-bottom:8px;">尚無引用來源</div>
+<div style="font-size:12px; color:#888; line-height:1.5;">提出問題後，檢索結果的引用來源會顯示在這裡。</div>
+`;
 switchQnaTab(isClinical ? 'clinical' : 'doc');
 }
 
@@ -2051,12 +2364,15 @@ const grid = document.getElementById('qna-suggestion-grid');
 const desc = document.getElementById('qna-welcome-desc');
 const input = document.getElementById('qna-input');
 const modeSpan = document.getElementById('qna-disclaimer-mode');
+const selectedCount = getCheckedSampleDocs().length;
+const p = getCurrentPatient();
+
 if (tabName === 'doc') {
 tabDoc.classList.add('active');
 tabClinical.classList.remove('active');
-qnaHint.innerHTML = "ⓘ 已選 0 份文件 • 不帶入病人 CCP";
+qnaHint.innerHTML = `ⓘ 已選 ${selectedCount} 份文件 • 不帶入病人 CCP`;
 if (input) input.placeholder = "向選定的文件提出問題...";
-if (modeSpan) modeSpan.textContent = "文件 RAG • 0 份已選文件";
+if (modeSpan) modeSpan.textContent = `文件 RAG • ${selectedCount} 份已選文件`;
 if (desc) desc.innerHTML = "從左側選擇共用知識庫、個人文件或資料夾，開始提問。";
 if (grid) grid.innerHTML = `
 <button type="button" class="qna-suggestion-card" onclick="sendQnA('請摘要選定文件中的核心內容')">
@@ -2075,10 +2391,10 @@ if (grid) grid.innerHTML = `
 } else {
 tabClinical.classList.add('active');
 tabDoc.classList.remove('active');
-qnaHint.innerHTML = `ⓘ 已帶入病人 王小明 CCP (ID: ${currentPatientId})`;
-if (input) input.placeholder = "針對王小明的臨床資料包提出問題...";
-if (modeSpan) modeSpan.textContent = "臨床資料包問答 • 王小明 CCP";
-if (desc) desc.innerHTML = "針對王小明的臨床資料包提出問題，快速獲取附帶 FHIR 來源的精準解答。";
+qnaHint.innerHTML = `ⓘ 已帶入病人 ${p.name} CCP (ID: ${p.id})`;
+if (input) input.placeholder = `針對${p.name}的臨床資料包提出問題...`;
+if (modeSpan) modeSpan.textContent = `臨床資料包問答 • ${p.name} CCP`;
+if (desc) desc.innerHTML = `針對${p.name}的臨床資料包提出問題，快速獲取附帶 FHIR 來源的精準解答。`;
 if (grid) grid.innerHTML = `
 <button type="button" class="qna-suggestion-card" onclick="sendQnA('請摘要病患最新的尿液檢驗與培養數值')">
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -2115,14 +2431,15 @@ const typingId = "msg-" + Date.now();
 setTimeout(() => {
 log.innerHTML += `<div class="chat-system chat-bubble" id="${typingId}">...</div>`;
 let answer = "";
+const p = getCurrentPatient();
 const isClinical = document.getElementById('tab-clinical').classList.contains('active');
 if (isClinical) {
 if (text.includes('用藥')) {
-answer = `根據王小明的臨床資料包，共有 3 筆歷史處方紀錄（皆為 completed）：\n1. Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（2018-02-13，每日兩次、每次一錠，用於腎盂腎炎）[MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]\n2. Sodium fluoride 0.0272 mg/mg 口腔凝膠（2017-09-08，用於牙齦炎）[MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]\n3. Ibuprofen 200 mg 口服錠（2016-09-26，需要時服用，用於腳踝扭傷）[MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]`;
+answer = `根據${p.name}的臨床資料包，共有 3 筆歷史處方紀錄（皆為 completed）：\n1. Amoxicillin 875 mg / Clavulanate 125 mg 口服錠（2018-02-13，每日兩次、每次一錠，用於腎盂腎炎）[MedicationRequest/279ca2a4-c2d9-4045-747e-ca3887c4bd5b]\n2. Sodium fluoride 0.0272 mg/mg 口腔凝膠（2017-09-08，用於牙齦炎）[MedicationRequest/279ca2a4-c2d9-4045-27ff-afed544d7a80]\n3. Ibuprofen 200 mg 口服錠（2016-09-26，需要時服用，用於腳踝扭傷）[MedicationRequest/279ca2a4-c2d9-4045-3dd5-7e2bd8c0f97f]`;
 } else if (text.includes('影像') || text.includes('過敏') || text.includes('照護')) {
-answer = `根據王小明的臨床資料包：\n- 影像檢查：2018-02-13 因頭痛評估執行腦部核磁共振掃描（Brain MRI，1 Series / 28 張 DICOM 切片）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]，目前尚無獨立之放射科判讀報告，可於影像檢測器檢視切片。\n- 過敏史：各次門診與急診病歷文字檔皆記載「無已知過敏史（No Known Allergies）」，但缺少獨立之結構化 AllergyIntolerance 資源。\n- 長期照護計畫：自 2006-06-23 起維持進行中的「體重管理計畫」[CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]。`;
+answer = `根據${p.name}的臨床資料包：\n- 影像檢查：2018-02-13 因頭痛評估執行腦部核磁共振掃描（Brain MRI，1 Series / 28 張 DICOM 切片）[ImagingStudy/279ca2a4-c2d9-4045-f722-c5e961e0b880]，目前尚無獨立之放射科判讀報告，可於影像檢測器檢視切片。\n- 過敏史：各次門診與急診病歷文字檔皆記載「無已知過敏史（No Known Allergies）」，但缺少獨立之結構化 AllergyIntolerance 資源。\n- 長期照護計畫：自 2006-06-23 起維持進行中的「體重管理計畫」[CarePlan/279ca2a4-c2d9-4045-1a2a-0c2b4c98ee4b]。`;
 } else {
-answer = `根據王小明的臨床資料包，針對您所提問的「${text}」：\n\n- 2018-02-13 尿液細菌培養檢出大腸桿菌（Escherichia coli）> 100,000 CFU/mL [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]。\n- 同日尿液分析顯示亞硝酸鹽陽性、白血球酯酶 1+、潛血 +、尿沉渣白血球 26.644 /HPF、尿蛋白 10.595 mg/dL。\n- 當次診斷為腎盂腎炎 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已接受抗生素治療（Amoxicillin / Clavulanate）。建議留意目前缺少治療後追蹤培養與腎功能檢驗數據。`;
+answer = `根據${p.name}的臨床資料包，針對您所提問的「${text}」：\n\n- 2018-02-13 尿液細菌培養檢出大腸桿菌（Escherichia coli）> 100,000 CFU/mL [Observation/279ca2a4-c2d9-4045-dd11-1d127d5899b7]。\n- 同日尿液分析顯示亞硝酸鹽陽性、白血球酯酶 1+、潛血 +、尿沉渣白血球 26.644 /HPF、尿蛋白 10.595 mg/dL。\n- 當次診斷為腎盂腎炎 [Condition/279ca2a4-c2d9-4045-5682-cb0f5c86e1d1]，已接受抗生素治療（Amoxicillin / Clavulanate）。建議留意目前缺少治療後追蹤培養與腎功能檢驗數據。`;
 }
 document.getElementById('qna-cite-count').textContent = '3';
 document.getElementById('qna-cite-list').innerHTML = `
@@ -2133,7 +2450,31 @@ document.getElementById('qna-cite-list').innerHTML = `
 </div>
 `;
 } else {
-answer = `根據您選定的文件庫內容，針對「${text}」：\n\n由於目前尚未選定任何參考文件（已選 0 份），因此無法提供精準的文件 RAG 回覆。建議您先從左側選擇相關知識庫，或切換至「臨床資料包問答」分頁直接詢問王小明的病歷脈絡。`;
+const selectedDocs = getCheckedSampleDocs();
+if (selectedDocs.length === 0) {
+answer = `根據您選定的文件庫內容，針對「${text}」：\n\n目前尚未勾選任何文件（已選 0 份）。請先在左側勾選文件後再提問。`;
+document.getElementById('qna-cite-count').textContent = '0';
+document.getElementById('qna-cite-list').innerHTML = `
+<div style="font-weight:bold; font-size:14px; margin-bottom:8px;">尚無引用來源</div>
+<div style="font-size:12px; color:#888; line-height:1.5;">勾選來源文件後提問，引用段落會顯示在這裡。</div>
+`;
+} else {
+const docListStr = selectedDocs.join('、');
+if (text.includes('規定') || text.includes('限制')) {
+answer = `依據已勾選文件（${docListStr}）中的相關說明：\n\n1. 急診處置與照護條件（符合重大外傷急診病人處...）：需符合重大外傷急診處置條件與對應適應症規範。\n2. 解毒劑與呼吸道藥物使用規範（第十一節 解毒劑.docx、第六節 呼吸道藥物.pdf）：需依適應症、劑量限制與給付規定核對，並留意臨床條件與用藥禁忌。`;
+} else if (text.includes('衝突')) {
+answer = `比對已勾選文件（${docListStr}）的說明：\n\n- 各份文件皆針對特定臨床情境訂定處置與用藥條件，彼此涵蓋不同章節範疇（重大外傷急診處置、解毒劑、呼吸道藥物），需依實際臨床適應症分別核對，未見互相矛盾之規定。`;
+} else {
+answer = `依據已勾選文件（${docListStr}）核心內容摘要：\n\n- 符合重大外傷急診病人處...：整理重大外傷急診病人處置與照護重點。\n- 第十一節 解毒劑.docx：整理常見中毒情境對應之解毒劑使用與注意事項。\n- 第六節 呼吸道藥物.pdf：整理呼吸道相關藥品之臨床應用與給付規定重點。`;
+}
+
+document.getElementById('qna-cite-count').textContent = String(selectedDocs.length);
+document.getElementById('qna-cite-list').innerHTML = `
+<div style="width:100%; text-align:left; display:flex; flex-direction:column; gap:8px;">
+${selectedDocs.map(d => `<div class="source-item">${d}</div>`).join('')}
+</div>
+`;
+}
 }
 
 const bubble = document.getElementById(typingId);
@@ -2148,23 +2489,22 @@ log.scrollTop = log.scrollHeight;
 }, 450);
 }
 
-// ==========================================
-// BLUELIGHT VIEWER (撐滿粉紫色 viewport 框 + 避免開頭字遮擋)
-// ==========================================
+let viewerLoadToken = 0;
+
 function syncBlueLightViewport(iframeWin) {
 if (!iframeWin) return;
 try {
 const doc = iframeWin.document;
 if (iframeWin.innerWidth <= 992) {
 const iconList = doc.getElementById('icon-list');
-const barHeight = iconList ? Math.ceil(iconList.getBoundingClientRect().height) : 54;
-const availH = Math.max(460, (iframeWin.innerHeight || 680) - barHeight - 8);
-const availW = Math.max(280, (iframeWin.innerWidth || 390) - 4);
+const barHeight = iconList ? Math.ceil(iconList.getBoundingClientRect().height) : 52;
+const availH = Math.max(460, (iframeWin.innerHeight || 620) - barHeight - 4);
+const availW = Math.max(280, iframeWin.innerWidth || 390);
 
 const containers = doc.querySelectorAll('#container, #Viewer_Picture, .container, #canvas-container');
 containers.forEach(el => {
 el.style.setProperty('position', 'relative', 'important');
-el.style.setProperty('top', `${barHeight + 4}px`, 'important');
+el.style.setProperty('top', `${barHeight + 2}px`, 'important');
 el.style.setProperty('left', '0px', 'important');
 el.style.setProperty('right', '0px', 'important');
 el.style.setProperty('width', `${availW}px`, 'important');
@@ -2173,7 +2513,6 @@ el.style.setProperty('height', `${availH}px`, 'important');
 el.style.setProperty('margin', '0 auto', 'important');
 });
 
-// 拉寬所有 viewport / 畫布元素並避免上方開頭字被遮擋
 const vpNodes = doc.querySelectorAll('[id*="viewport"], [id*="Viewport"], [class*="viewport"], [class*="Viewport"]');
 vpNodes.forEach(vp => {
 if (vp.id === 'icon-list') return;
@@ -2181,14 +2520,6 @@ vp.style.setProperty('left', '0px', 'important');
 vp.style.setProperty('right', '0px', 'important');
 vp.style.setProperty('width', `${availW}px`, 'important');
 vp.style.setProperty('max-width', '100%', 'important');
-if (vp.offsetHeight > 0 && vp.offsetHeight > availH) {
-vp.style.setProperty('height', `${availH}px`, 'important');
-}
-});
-
-doc.querySelectorAll('canvas').forEach(cv => {
-cv.style.setProperty('max-width', '100%', 'important');
-cv.style.setProperty('max-height', '100%', 'important');
 });
 }
 iframeWin.dispatchEvent(new Event('resize'));
@@ -2210,21 +2541,23 @@ const btn = document.getElementById('viewer-expand-btn');
 if (!layout || !btn) return;
 const expanded = layout.classList.toggle('viewer-expanded');
 btn.textContent = expanded ? '還原面板' : '放大檢視';
-setTimeout(triggerBlueLightResize, 150);
+setTimeout(triggerBlueLightResize, 120);
 }
 
 window.addEventListener('resize', () => {
 if (window.location.hash === '#viewer') {
-setTimeout(triggerBlueLightResize, 150);
+setTimeout(triggerBlueLightResize, 120);
 }
 });
 
 function initBlueLight() {
+const token = ++viewerLoadToken;
 const iframe = document.getElementById('bluelight-iframe');
 const mask = document.getElementById('viewer-loading-mask');
 const thumbSpan = document.getElementById('viewer-loading-text');
 const leftThumb = document.getElementById('viewer-thumb-text');
-const p = demoPatients[0];
+
+const p = getCurrentPatient();
 const viewerTitle = document.getElementById('viewer-patient-name-title');
 const viewerMeta = document.getElementById('viewer-patient-meta-title');
 if (viewerTitle) viewerTitle.innerHTML = `${p.name} <span style="font-size:13px; font-weight:normal; color:#888; margin-left:8px;">${p.gender}</span>`;
@@ -2234,11 +2567,8 @@ mask.style.display = 'flex';
 thumbSpan.innerHTML = "啟動核心引擎...<br/><small style='font-size:12px;color:#888'>請稍候</small>";
 leftThumb.textContent = "載入中";
 
-iframe.src = 'about:blank';
-setTimeout(() => {
-iframe.src = `./bluelight/html/start.html`;
-
 iframe.onload = function() {
+if (token !== viewerLoadToken) return;
 const iframeWin = iframe.contentWindow;
 
 try {
@@ -2268,39 +2598,63 @@ background: #171717 !important;
 #LeftPicture { display: none !important; }
 #container, #Viewer_Picture, .container, #canvas-container {
 position: relative !important;
-top: 56px !important;
-height: calc(100% - 60px) !important;
+top: 54px !important;
+height: calc(100% - 56px) !important;
 width: 100% !important;
 max-width: 100% !important;
 left: 0 !important;
 right: 0 !important;
 z-index: 1 !important;
 }
-[id*="viewport"], [id*="Viewport"], [class*="viewport"], [class*="Viewport"] {
-left: 0 !important;
-right: 0 !important;
-width: 100% !important;
-max-width: 100% !important;
-}
 }
 `;
 iframeWin.document.head.appendChild(style);
 } catch(e) {}
 
+let attempts = 0;
 const checkReady = setInterval(async () => {
-if (iframeWin.onloadFunction && iframeWin.onloadFunction.onloaded) {
+if (token !== viewerLoadToken) {
 clearInterval(checkReady);
-thumbSpan.innerHTML = "讀取腦部 DICOM 檔案...<br/><small style='font-size:12px;color:#888'>本機 97 資料夾</small>";
+return;
+}
+attempts++;
+const ready = Boolean(
+iframeWin &&
+iframeWin.onloadFunction &&
+iframeWin.onloadFunction.onloaded &&
+typeof iframeWin.loadDicomDataSet === 'function'
+);
 
+if (ready || attempts >= 80) {
+clearInterval(checkReady);
+if (!ready) {
+mask.style.display = 'none';
+leftThumb.textContent = "逾時";
+return;
+}
+
+thumbSpan.innerHTML = "平行讀取腦部 DICOM 影像...<br/><small style='font-size:12px;color:#888'>本機 97 資料夾</small>";
+
+const indices = Array.from({ length: 28 }, (_, idx) => idx + 1);
 let loadedCount = 0;
 let firstSop = null;
 
-for (let i = 1; i <= 28; i++) {
+const results = await Promise.allSettled(
+indices.map(async (i) => {
 const fileName = `1-${i.toString().padStart(2, '0')}.dcm`;
-try {
 const res = await fetch(`./97/${fileName}`);
-if (res.ok) {
+if (!res.ok) throw new Error(fileName);
 const arrayBuffer = await res.arrayBuffer();
+return { index: i, fileName, arrayBuffer };
+})
+);
+
+if (token !== viewerLoadToken) return;
+
+for (const r of results) {
+if (r.status !== 'fulfilled') continue;
+try {
+const { index, fileName, arrayBuffer } = r.value;
 const Sop = iframeWin.loadDicomDataSet(arrayBuffer);
 if (Sop) {
 Sop.Image.url = `./97/${fileName}`;
@@ -2310,13 +2664,12 @@ iframeWin.setPixelDataToImageObj(Sop);
 if (typeof iframeWin.setImageObjToLeft === 'function') {
 iframeWin.setImageObjToLeft(Sop);
 }
-if (i === 1) firstSop = Sop;
+if (!firstSop && index === 1) firstSop = Sop;
+else if (!firstSop) firstSop = Sop;
 loadedCount++;
-thumbSpan.innerHTML = `解析進度 ${loadedCount}/28...`;
 }
-}
-} catch(e) {
-console.warn("略過檔案:", fileName);
+} catch (e) {
+console.warn("解析 DICOM 略過:", e);
 }
 }
 
@@ -2326,28 +2679,29 @@ leftThumb.textContent = "失敗";
 return;
 }
 
-thumbSpan.innerHTML = "渲染腦部影像中...<br/><small style='font-size:12px;color:#888'>即將顯示</small>";
 leftThumb.innerHTML = `MRI<br>${loadedCount} 張`;
 
-setTimeout(() => {
 try {
 if (firstSop && typeof iframeWin.GetViewport === 'function') {
-syncBlueLightViewport(iframeWin);
 iframeWin.GetViewport().loadImgBySop(firstSop);
-for (let z = 0; z < iframeWin.Viewport_Total; z++) {
-if(typeof iframeWin.setSeriesCount === 'function') iframeWin.setSeriesCount(z);
+for (let z = 0; z < (iframeWin.Viewport_Total || 1); z++) {
+if (typeof iframeWin.setSeriesCount === 'function') iframeWin.setSeriesCount(z);
 }
-mask.style.display = 'none';
-setTimeout(() => syncBlueLightViewport(iframeWin), 250);
+syncBlueLightViewport(iframeWin);
 }
 } catch (err) {
 console.error("顯示影像失敗", err);
 }
-}, 300);
+
+mask.style.display = 'none';
+setTimeout(() => {
+if (token === viewerLoadToken) syncBlueLightViewport(iframeWin);
+}, 120);
 }
-}, 100);
+}, 50);
 };
-}, 100);
+
+iframe.src = `./bluelight/html/start.html`;
 }
 </script>
 </body>
